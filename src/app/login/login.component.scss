@@ -54,16 +54,17 @@ body {
 .login-form mat-form-field {
     width: 100%;
     height: 10%;
+    padding-left: 10px;
     margin-bottom: 1rem;
+    box-sizing: border-box; 
 }
 
 .login-form input {
-    width: 50%; 
-    // margin: 0.5rem 0;
-    padding: 0px;
+    width: 100%; 
+    padding: 0px; 
     border: 1px solid #ddd;
     border-radius: 4px;
-    
+    overflow: visible;
 }
 
 .login-form a {
