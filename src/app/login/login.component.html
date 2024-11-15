@@ -15,7 +15,7 @@
       
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput formControlName="Password" [type]="showPass" placeholder="Password">
+        <input matInput   type='password' formControlName="Password"  placeholder="Password">
         <mat-error *ngIf="regFormControls['Password'].errors?.['required'] && submitted">Password is required</mat-error>
         <mat-error *ngIf="regFormControls['Password'].errors?.['minlength'] && submitted">Password must be at least 8 characters</mat-error>
         <mat-hint>Enter your password</mat-hint>

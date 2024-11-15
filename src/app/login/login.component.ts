@@ -11,7 +11,6 @@ export class LoginComponent {
   
       registerForm!: FormGroup;
       submitted = false;
-      showPass="password";
   
       constructor(private formBuilder: FormBuilder,public httpService:HttpService ) { }
   
@@ -37,6 +36,7 @@ export class LoginComponent {
               console.log(err);
             }
           });
+          
         } 
       }
     }      
