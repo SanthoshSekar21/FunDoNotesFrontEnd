@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpService } from '../service/http-service/http.service';
 
 @Component({
   selector: 'app-login',
@@ -10,24 +11,32 @@ export class LoginComponent {
   
       registerForm!: FormGroup;
       submitted = false;
-      showPass="text";
+      showPass="password";
   
-      constructor(private formBuilder: FormBuilder ) { }
+      constructor(private formBuilder: FormBuilder,public httpService:HttpService ) { }
   
       ngOnInit() {
           this.registerForm = this.formBuilder.group({
-              email: ['', [Validators.required, Validators.email]],
-              password: ['', [Validators.required, Validators.minLength(8)]],
+              Email: ['', [Validators.required, Validators.email]],
+              Password: ['', [Validators.required, Validators.minLength(8)]],
           });
       }
   
-      // convenience getter for easy access to form fields
+      
       get regFormControls() { return this.registerForm.controls; }
-      handleLogin(){
-       console.log(this.regFormControls["email"]["errors"]?.["required"])
+      handleLogin() {
+        this.submitted = true; 
+        if (this.registerForm.valid) {
+          const { Email, Password } = this.registerForm.value;
+          console.log(Email, Password);
+          this.httpService.loginApiCall('', { Email, Password }).subscribe({
+            next: (res) => {
+              console.log(res);
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+        } 
       }
-      onSubmit() {
-        this.submitted = true;
-        console.log('Form submitted successfully');
-      }   
-}
+    }      
