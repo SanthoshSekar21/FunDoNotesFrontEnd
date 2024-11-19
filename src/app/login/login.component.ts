@@ -12,7 +12,7 @@ export class LoginComponent {
   
       registerForm!: FormGroup;
       submitted = false;
-  
+      
       constructor(private formBuilder: FormBuilder,public httpService:HttpService,private router:Router ) { }
   
       ngOnInit() {
@@ -29,8 +29,9 @@ export class LoginComponent {
         if (this.registerForm.valid) {
           const { Email, Password } = this.registerForm.value;
           this.httpService.loginApiCall('', { Email, Password }).subscribe({
-            next: (res) => {
+            next: (res:any) => {
               console.log(res);
+              localStorage.setItem("token",res.token);
              this.router.navigate(['/dashboard/notes'])
             },
             error: (err) => {

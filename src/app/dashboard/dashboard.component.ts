@@ -10,4 +10,10 @@ drawerState:boolean=false
 handleDrawerClick(){
   this.drawerState=!this.drawerState;
 }
+handleOutsideClick(){
+  this.drawerState=false;
+}
+stopPropagation(event: Event) {
+  event.stopPropagation();
+}
 }

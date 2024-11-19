@@ -1,19 +1,21 @@
 <div class="dashboard-container">
-    <!-- Button to toggle the side drawer -->
-    <button mat-button (click)="handleDrawerClick()">Toggle Menu</button>
-  
-    <!-- Side Navigation Drawer -->
-    <mat-drawer-container class="example-container" [hasBackdrop]="false">
-      <mat-drawer #drawer mode="over" [opened]="drawerState">
-        <h2>I'm a Drawer</h2>
-        <p>Drawer content goes here.</p>
-      </mat-drawer>
-  
-      <!-- Main Content Area -->
-      <mat-drawer-content>
-          <router-outlet></router-outlet>
-     
-      </mat-drawer-content>
-    </mat-drawer-container>
-  </div>
-  
+
+  <!-- Menu Button aligned to the left -->
+  <button mat-icon-button (click)="handleDrawerClick()" aria-label="Toggle Drawer" matTooltip="Open Menu" class="menu-button" [ngClass]="{'hidden': drawerState}">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <mat-drawer-container class="example-container"  (click)="handleOutsideClick()">
+    <!-- Side Drawer -->
+    <mat-drawer #drawer mode="side" [opened]="drawerState" class="full-height-drawer" (click)="stopPropagation($event)">
+      <h2>Drawer Content</h2>
+      <p>Drawer content goes here.</p>
+    </mat-drawer>
+
+    <!-- Main Content Area -->
+    <mat-drawer-content class="content-container">
+      <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+</div>

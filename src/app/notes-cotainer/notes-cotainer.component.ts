@@ -8,6 +8,6 @@ import { Component } from '@angular/core';
 export class NotesCotainerComponent {
  notesList:any[]=[];
  ngOnInit() {
-  this.notesList=["hello","world","hi"]
+  this.notesList=["hello","world","hi","hee","ka","jfgh","hsg","jfhk"]
  }
 }

@@ -6,7 +6,7 @@
     transition: all 0.3s ease;
     padding: 10px;
     margin-top: 20px; 
-    position: absolute;  
+    position: relative;  
     left: 50%;
     transform: translateX(-50%); 
 }
@@ -38,7 +38,7 @@
     height: 60px;
     border: none;
     outline: none;
-    resize: none;
+    // resize: none;
     font-size: 16px;
 }
 
