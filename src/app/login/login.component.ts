@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../service/http-service/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
       registerForm!: FormGroup;
       submitted = false;
   
-      constructor(private formBuilder: FormBuilder,public httpService:HttpService ) { }
+      constructor(private formBuilder: FormBuilder,public httpService:HttpService,private router:Router ) { }
   
       ngOnInit() {
           this.registerForm = this.formBuilder.group({
@@ -27,10 +28,10 @@ export class LoginComponent {
         this.submitted = true; 
         if (this.registerForm.valid) {
           const { Email, Password } = this.registerForm.value;
-          console.log(Email, Password);
           this.httpService.loginApiCall('', { Email, Password }).subscribe({
             next: (res) => {
               console.log(res);
+             this.router.navigate(['/dashboard/notes'])
             },
             error: (err) => {
               console.log(err);
