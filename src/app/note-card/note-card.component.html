@@ -1,16 +1,17 @@
 <span class="note-card">
+    <!-- Display title and description from noteDetails -->
     <div class="note-card-header">
-      <h3 class="note-title">Note Title</h3>
+      <h3 class="note-title">{{noteDetails.title}}</h3> <!-- Title of the note -->
     </div>
     <div class="note-card-body">
-      <p class="note-content">This is the content of the note.It can be multi-line and have detailed information here.</p>
+      <p class="note-content">{{noteDetails.description}}</p> <!-- Content of the note -->
       <div class="buttons">
-        <button mat-icon-button aria-label="archive" matTooltip="archive">
+        <button mat-icon-button aria-label="archive" matTooltip="archive" (click)="handleNoteIconsClick('archive')">
           <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
         </button>
         <button mat-icon-button aria-label="trash" matTooltip="trash">
-            <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
-          </button>
+          <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
+        </button>
       </div>
     </div>
   </span>

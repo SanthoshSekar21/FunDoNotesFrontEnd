@@ -28,7 +28,7 @@ export class LoginComponent {
         this.submitted = true; 
         if (this.registerForm.valid) {
           const { Email, Password } = this.registerForm.value;
-          this.httpService.loginApiCall('', { Email, Password }).subscribe({
+          this.httpService.loginApiCall('/api/v1/users', { Email, Password }).subscribe({
             next: (res:any) => {
               console.log(res);
               localStorage.setItem("token",res.token);

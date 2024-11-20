@@ -1,23 +1,22 @@
-
-<div *ngIf="!isExpanded; else expandedNote" class="note-collapsed" (click)="toggleNote()">
+<!-- add-note.component.html -->
+<div *ngIf="!isExpanded; else expandedNote" class="note-collapsed" (click)="addNoteToggle('toggle')">
     <span>Take a note...</span>
 </div>
 <ng-template #expandedNote>
     <div class="note-expanded">
-        <input type="text" placeholder="Title" class="title-input" />
-        <textarea placeholder="Take a note..." class="note-textarea"></textarea>
+        <input type="text" placeholder="Title" class="title-input" [(ngModel)]="title">
+        <textarea placeholder="Take a note..." class="note-textarea" [(ngModel)]="description"></textarea>
             <div class="buttons">   
                 <button mat-icon-button aria-label="reminder button" matTooltip="Reminder">
                     <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
                 </button>
-                <button mat-icon-button aria-label="collabrator button" matTooltip="Collabrator">
-                    <mat-icon svgIcon="collabrator-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
+                <button mat-icon-button aria-label="collaborator button" matTooltip="Collaborator">
+                    <mat-icon svgIcon="collabrator-icon" aria-hidden="false" aria-label="collaborator icon"></mat-icon>
                 </button>
                 <button mat-icon-button aria-label="color button" matTooltip="Background Color Options">
                     <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
                 </button>
         </div>
-
-        <button class="close-btn" (click)="toggleNote()">Close</button>
+        <button class="close-btn" (click)="addNoteToggle('save')">Close</button>
     </div>
 </ng-template>
