@@ -1,4 +1,5 @@
-<span class="note-card">
+<span class="note-card" (click)="openUpdateDialog(noteDetails)"
+>
     
     <div class="note-card-header">
       <h3 class="note-title">{{noteDetails.title}}</h3> 
@@ -12,9 +13,6 @@
         <button mat-icon-button aria-label="trash" matTooltip="trash">
           <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
         </button>
-        <button mat-icon-button (click)="openUpdateDialog(noteDetails)">
-            <mat-icon>edit</mat-icon>
-          </button>
           
       </div>
     </div>
