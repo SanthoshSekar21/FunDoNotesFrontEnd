@@ -20,6 +20,7 @@ import { AddNoteComponent } from './add-note/add-note.component';
 import { NoteCardComponent } from './note-card/note-card.component';
 import { TrashContainerComponent } from './trash-container/trash-container.component';
 import { ArchiveContainerComponent } from './archive-container/archive-container.component';
+import { UpdateNoteComponent } from './update-note/update-note.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ArchiveContainerComponent } from './archive-container/archive-container
     AddNoteComponent,
     NoteCardComponent,
     TrashContainerComponent,
-    ArchiveContainerComponent
+    ArchiveContainerComponent,
+    UpdateNoteComponent
   ],
   imports: [
     BrowserModule,
