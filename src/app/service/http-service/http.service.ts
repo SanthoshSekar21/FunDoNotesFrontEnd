@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -21,7 +21,10 @@ export class HttpService {
   getAllNotesApiCall(endpoint: string, header: any): Observable<any> {
     return this.http.get('http://localhost:3000'+endpoint, header);
 }
-
+updateNoteApiCall(url: string, payload: object) {
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token') || ''}`);
+  return this.http.put(url, payload, { headers });
+}
   
   
 }

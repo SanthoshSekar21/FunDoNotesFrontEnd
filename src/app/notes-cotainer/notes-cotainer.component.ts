@@ -16,7 +16,6 @@ export class NotesCotainerComponent {
     this.notesList = []; 
     this.fetchNotes();
   }
-  
  
  fetchNotes() {
   const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);

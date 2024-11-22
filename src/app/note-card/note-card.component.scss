@@ -1,5 +1,5 @@
 .note-card {
-  width: 300px;
+  width: 260px;
   margin-top: 20px;
   background-color: #ffffff;
   border-radius: 8px;
@@ -25,6 +25,7 @@
   color: #333;
   margin: 0;
   word-wrap: break-word;
+  overflow: hidden;
 }
 
 .note-card-body {

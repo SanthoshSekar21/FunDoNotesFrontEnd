@@ -1,1 +1,35 @@
-<p>update-note works!</p>
+<div class="note-dialog">
+    <div class="note-title">
+      <input
+        type="text"
+        placeholder="Title"
+        [(ngModel)]="noteDetails.title"
+        class="title-input"
+      />
+    </div>
+    <div class="note-content">
+      <textarea
+        placeholder="Take a note..."
+        [(ngModel)]="noteDetails.description"
+        class="description-input"
+      ></textarea>
+    </div>
+  
+
+    <div class="note-actions">
+      <div class="left-actions">
+        <button mat-icon-button aria-label="archive" matTooltip="archive" >
+            <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
+          </button>
+          <button mat-icon-button aria-label="trash" matTooltip="trash">
+            <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
+          </button>
+      </div>
+  
+      <div class="right-actions">
+        <button mat-button (click)="onClose()">Close</button>
+        <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+      </div>
+    </div>
+  </div>
+  
