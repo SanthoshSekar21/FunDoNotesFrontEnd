@@ -1,101 +1,108 @@
-.note-dialog {
+::ng-deep .mat-dialog-container {
+    border-radius: 16px important; 
+    overflow: hidden;  /* Prevent content from overflowing outside the rounded corners */
+    border: 2px solid #ccc;  /* Add border to the dialog container */
+  }
+  div.note-dialog{
+    border-radius: 8px;
+  }
+  
+  .note-dialog {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
     padding: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
     background: #fff;
-    overflow: hidden;
+    overflow: hidden;  /* Ensure content doesn't overflow */
     box-sizing: border-box;
     transition: box-shadow 0.3s ease-in-out;
-    
+  
     &:hover {
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
-  }
   
-  .note-title {
-    margin-bottom: 16px;
+    .note-title {
+      margin-bottom: 16px;
+      
+      .title-input {
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        background: none;
+        color: #212121;
+        padding: 8px 0;
+        box-sizing: border-box;
     
-    .title-input {
-      width: 100%;
-      font-size: 1.5rem;
-      font-weight: 600;
-      border: none;
-      outline: none;
-      background: none;
-      color: #212121;
-      padding: 8px 0;
-      box-sizing: border-box;
-  
-      /* Remove the focus underline and prevent the blue bottom line */
-      &:focus {
-        border: none; /* Remove any border on focus */
-        outline: none; /* Remove the outline on focus */
+        /* Remove the focus underline and prevent the blue bottom line */
+        &:focus {
+          border: none;  /* Remove any border on focus */
+          outline: none;  /* Remove the outline on focus */
+        }
       }
     }
-  }
   
-  .note-content {
-    margin-bottom: 24px;
-    flex-grow: 1;
+    .note-content {
+      margin-bottom: 24px;
+      flex-grow: 1;
   
-    .description-input {
-      width: 100%;
-      min-height: 120px;
-      border: none;
-      outline: none;
-      background: none;
-      color: #424242;
-      padding: 8px 0;
-      font-size: 1rem;
-      line-height: 1.5;
-      resize: none;
-      box-sizing: border-box;
+      .description-input {
+        width: 100%;
+        min-height: 120px;
+        border: none;
+        outline: none;
+        background: none;
+        color: #424242;
+        padding: 8px 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        resize: none;
+        box-sizing: border-box;
   
-      /* Remove the focus underline and prevent the blue bottom line */
-      &:focus {
-        border: none; /* Remove any border on focus */
-        outline: none; /* Remove the outline on focus */
+        &:focus {
+          border: none;  /* Remove any border on focus */
+          outline: none;  /* Remove the outline on focus */
+        }
       }
     }
-  }
   
-  .note-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 16px;
-  
-    .left-actions,
-    .right-actions {
+    .note-actions {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-    }
+      margin-top: 16px;
   
-    button {
-      cursor: pointer;
-      border: none;
-      outline: none;
-      background: none;
-      transition: background-color 0.3s ease;
-  
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.05);
+      .left-actions,
+      .right-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
-    }
   
-    .mat-icon-button {
-      border-radius: 50%;
-      padding: 8px;
-    }
+      button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background: none;
+        transition: background-color 0.3s ease;
   
-    .mat-button, .mat-raised-button {
-      font-size: 14px;
-      padding: 8px 16px;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+      }
+  
+      .mat-icon-button {
+        border-radius: 50%;
+        padding: 8px;
+      }
+  
+      .mat-button, .mat-raised-button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
     }
   }
   

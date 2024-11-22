@@ -36,7 +36,7 @@ handleNoteIconsClick(action:string){
 }
 openUpdateDialog(note: { id: string; title: string; description: string }) {
   const dialogRef = this.dialog.open(UpdateNoteComponent, {
-    width: '700px',
+    width: '640px',
     data: note, 
   });
 

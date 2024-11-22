@@ -21,9 +21,9 @@ export class HttpService {
   getAllNotesApiCall(endpoint: string, header: any): Observable<any> {
     return this.http.get('http://localhost:3000'+endpoint, header);
 }
-updateNoteApiCall(url: string, payload: object) {
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token') || ''}`);
-  return this.http.put(url, payload, { headers });
+updateNoteApiCall(endpoint: string,data:any,header:any) {
+ 
+  return this.http.put('http://localhost:3000'+endpoint,data,header);
 }
   
   
