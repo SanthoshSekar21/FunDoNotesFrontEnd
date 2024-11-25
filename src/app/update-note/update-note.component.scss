@@ -1,108 +1,114 @@
 ::ng-deep .mat-dialog-container {
-    border-radius: 16px important; 
-    overflow: hidden;  /* Prevent content from overflowing outside the rounded corners */
-    border: 2px solid #ccc;  /* Add border to the dialog container */
+  border-radius: 8px !important;  
+  overflow: hidden;
+  border: 1px solid #e0e0e0;  
+  max-height: 80vh; }
+
+.note-dialog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px;  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  
+  background: #fff;  
+  overflow: hidden; 
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease-in-out;
+  max-height: 70vh;  
+
+  &:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   }
-  div.note-dialog{
-    border-radius: 8px;
-  }
-  
-  .note-dialog {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    background: #fff;
-    overflow: hidden;  /* Ensure content doesn't overflow */
-    box-sizing: border-box;
-    transition: box-shadow 0.3s ease-in-out;
-  
-    &:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    }
-  
-    .note-title {
-      margin-bottom: 16px;
-      
-      .title-input {
-        width: 100%;
-        font-size: 1.5rem;
-        font-weight: 600;
-        border: none;
-        outline: none;
-        background: none;
-        color: #212121;
-        padding: 8px 0;
-        box-sizing: border-box;
+
+  .note-title {
+    margin-bottom: 12px;  
     
-        /* Remove the focus underline and prevent the blue bottom line */
-        &:focus {
-          border: none;  /* Remove any border on focus */
-          outline: none;  /* Remove the outline on focus */
-        }
-      }
-    }
+    .title-input {
+      width: 100%;
+      font-size: 1.3rem;  
+      font-weight: 600;
+      border: none;
+      outline: none;
+      background: none;
+      color: #212121;  
+      padding: 6px 0;  
+      box-sizing: border-box;
   
-    .note-content {
-      margin-bottom: 24px;
-      flex-grow: 1;
-  
-      .description-input {
-        width: 100%;
-        min-height: 120px;
-        border: none;
-        outline: none;
-        background: none;
-        color: #424242;
-        padding: 8px 0;
-        font-size: 1rem;
-        line-height: 1.5;
-        resize: none;
-        box-sizing: border-box;
-  
-        &:focus {
-          border: none;  /* Remove any border on focus */
-          outline: none;  /* Remove the outline on focus */
-        }
-      }
-    }
-  
-    .note-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 16px;
-  
-      .left-actions,
-      .right-actions {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-  
-      button {
-        cursor: pointer;
-        border: none;
-        outline: none;
-        background: none;
-        transition: background-color 0.3s ease;
-  
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.05);
-        }
-      }
-  
-      .mat-icon-button {
-        border-radius: 50%;
-        padding: 8px;
-      }
-  
-      .mat-button, .mat-raised-button {
-        font-size: 14px;
-        padding: 8px 16px;
+      &:focus {
+        border: none; 
+        outline: none;  
       }
     }
   }
-  
+
+  .note-content {
+    margin-bottom: 16px;     
+    
+    .description-input {
+      width: 100%;
+      min-height: 100px;  
+      border: none;
+      outline: none;
+      background: none;
+      color: #424242; 
+      padding: 6px 0; 
+      font-size: 0.95rem;  
+      line-height: 1.4;  
+      resize: none;
+      box-sizing: border-box;
+
+      &:focus {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+
+  .note-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px; 
+    
+    .left-actions,
+    .right-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;  
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background: none;
+      transition: background-color 0.3s ease;
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);  
+      }
+    }
+
+    .mat-icon-button {
+      border-radius: 50%;  
+      padding: 6px;  
+    }
+
+    .mat-button, .mat-raised-button {
+      font-size: 13px;  
+      padding: 6px 12px; 
+      text-transform: none;  
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .note-dialog {
+    width: 90%;  
+    max-height: 60vh; 
+  }
+
+  .note-title .title-input, .note-content .description-input {
+    font-size: 1rem; 
+  }
+}

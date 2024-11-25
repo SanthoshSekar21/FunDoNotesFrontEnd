@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { HttpService } from '../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -8,7 +8,8 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./notes-cotainer.component.scss']
 })
 export class NotesCotainerComponent {
- notesList:any[]=[];
+
+  public notesList:any[]=[];
 
  constructor(private httpService:HttpService){}
 
@@ -38,6 +39,7 @@ handleUpdateList($event: any) {
     }
   }
   else if (action === 'archive') {
+    
     this.notesList = this.notesList.filter(
       element => element._id !== data._id 
     );

@@ -43,7 +43,7 @@ export class RegisterComponent {
                 },
                 error: (err) => {
                   if (err.status === 400 && err.error && err.error.message) {
-                    this.backendError = err.error?.message || 'An unexpected error occurred. Please try again later.';
+                    this.backendError = err.error?.message;
                   } else {
                       this.backendError = 'An unexpected error occurred. Please Enter the Valid credentials.';
                   }

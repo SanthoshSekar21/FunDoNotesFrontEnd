@@ -25,8 +25,8 @@ updateNoteApiCall(endpoint: string,data:any,header:any) {
  
   return this.http.put('http://localhost:3000'+endpoint,data,header);
 }
-  archiveNoteApiCall(endpoint:string,header:any){
-    return this.http.put('http://localhost:3000',header);
+  archiveNoteApiCall(endpoint:string,header:any) :Observable<any>{
+    return this.http.put('http://localhost:3000'+endpoint,null,header);
   }
   
 }
