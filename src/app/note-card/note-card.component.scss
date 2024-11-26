@@ -1,91 +1,150 @@
+/* Note card container */
 .note-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 260px;
-  margin-top: 20px;
+  margin: 20px auto;
   background-color: white;
   border-radius: 16px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  padding: 20px;
+  padding: 16px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden; 
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
 }
 
+/* Hover and focus effects */
+.note-card:hover,
+.note-card:focus-within {
+  background-color: #f0f0f0;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  z-index: 20; /* Ensure it stays above other elements */
+}
+
+
+.note-card.mat-menu-open {
+  background-color: #f0f0f0;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+
+
 .note-card-header {
-  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 8px;
   border-bottom: 1px solid #f0f0f0;
 }
 
+/* Title of the note */
 .note-title {
   font-size: 18px;
   font-weight: bold;
   color: #333;
   margin: 0;
-  word-wrap: break-word;
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
+/* Body section */
 .note-card-body {
-  padding: 10px;
-  font-size: 16px;
-  color: #555;
-  line-height: 1.5;
+  margin-top: 8px;
   flex-grow: 1;
-  overflow: hidden; 
+  color: #555;
+  font-size: 16px;
+  line-height: 1.4;
+  overflow: hidden;
+  word-wrap: break-word;
 }
 
-.note-card .buttons {
+.note-card-body .note-content {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Buttons container */
+.buttons {
   display: flex;
-  justify-content: space-between; 
-  margin-top: 10px; 
-  visibility: hidden; 
-  width: 100%; 
+  justify-content: space-between;
+  margin-top: 8px;
+  opacity: 0; /* Initially hidden */
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.note-card .buttons button {
-  background: none;
-  border: none;
-  padding: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 40px; 
-  height: 35px; 
-  display: flex; 
+/* Show buttons on hover */
+.note-card:hover .buttons,
+.note-card:focus-within .buttons,
+.note-card.mat-menu-open .buttons {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Individual buttons */
+.buttons span button {
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0; 
-  overflow: visible; 
+  width: 40px; /* Slightly larger for better visibility */
+  height: 40px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  padding: 4px; /* Adjust padding to fit icons comfortably */
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-.note-card .buttons button i {
-  font-size: 18px;
-  overflow: visible; 
+.buttons span button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-.note-card .buttons button:hover {
-  background-color: rgba(0, 0, 0, 0.1); 
+.buttons span button mat-icon {
+  font-size: 20px; /* Increase icon size for better visibility */
+  color: #333;
 }
 
-.note-card:hover .buttons {
-  visibility: visible; 
-}
-.note-card:hover {
-  background-color: #f0f0f0;
-  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+/* Angular Material menu styles */
+.mat-menu-trigger {
+  visibility: visible;
+  z-index: 30;
 }
 
-button {
-  margin-right: 10px;
+.mat-menu-panel {
+  z-index: 100;
 }
 
-.note-card-body p {
-  margin: 0;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+.mat-menu-item {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .note-card {
+    width: 100%;
+    margin: 16px 0;
+  }
+
+  .note-title {
+    font-size: 16px;
+  }
+
+  .note-card-body {
+    font-size: 14px;
+  }
+
+  .buttons span button {
+    width: 36px; /* Slightly smaller for responsive */
+    height: 36px;
+  }
+
+  .buttons span button mat-icon {
+    font-size: 18px; /* Slightly smaller for responsive */
+  }
 }

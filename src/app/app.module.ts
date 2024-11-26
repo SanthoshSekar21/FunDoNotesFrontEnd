@@ -6,6 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import{MatButtonModule} from '@angular/material/button'
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -49,7 +50,8 @@ import { UpdateNoteComponent } from './update-note/update-note.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatSidenavModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
