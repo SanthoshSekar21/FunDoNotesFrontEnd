@@ -23,6 +23,7 @@ import { NoteCardComponent } from './note-card/note-card.component';
 import { TrashContainerComponent } from './trash-container/trash-container.component';
 import { ArchiveContainerComponent } from './archive-container/archive-container.component';
 import { UpdateNoteComponent } from './update-note/update-note.component';
+import { IconComponent } from './icon/icon.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { UpdateNoteComponent } from './update-note/update-note.component';
     NoteCardComponent,
     TrashContainerComponent,
     ArchiveContainerComponent,
-    UpdateNoteComponent
+    UpdateNoteComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
