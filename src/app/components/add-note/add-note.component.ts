@@ -2,7 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_ICON, MORE_ICON, DELETE_FOREVER_ICON, RESTORE_ICON, UNARCHIVE_ICON, TRASH_ICON } from 'src/assets/svg-icons';
-import { HttpService } from '../service/http-service/http.service';
+import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -49,7 +49,7 @@ export class AddNoteComponent {
               action: 'add'
             });
           },
-          error: (err) => {
+          error: (err:any) => {
             console.error('Error creating note:', err);
           }
         });

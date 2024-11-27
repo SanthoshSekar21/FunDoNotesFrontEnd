@@ -12,18 +12,18 @@ import {MatMenuModule} from '@angular/material/menu';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotesCotainerComponent } from './notes-cotainer/notes-cotainer.component';
-import { AddNoteComponent } from './add-note/add-note.component';
-import { NoteCardComponent } from './note-card/note-card.component';
-import { TrashContainerComponent } from './trash-container/trash-container.component';
-import { ArchiveContainerComponent } from './archive-container/archive-container.component';
-import { UpdateNoteComponent } from './update-note/update-note.component';
-import { IconComponent } from './icon/icon.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NotesCotainerComponent } from './components/notes-cotainer/notes-cotainer.component';
+import { AddNoteComponent } from './components/add-note/add-note.component';
+import { NoteCardComponent } from './components/note-card/note-card.component';
+import { TrashContainerComponent } from './components/trash-container/trash-container.component';
+import { ArchiveContainerComponent } from './components/archive-container/archive-container.component';
+import { UpdateNoteComponent } from './components/update-note/update-note.component';
+import { IconComponent } from './components/icon/icon.component';
 
 
 @NgModule({

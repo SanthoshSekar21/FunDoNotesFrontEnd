@@ -1,6 +1,6 @@
 import { Component, Inject, Output, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpService } from '../service/http-service/http.service';
+import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -26,7 +26,7 @@ export class UpdateNoteComponent {
       console.log('Note updated:', res);
        this.updateList.emit({data: res.data,action: 'update',});
     },
-    error: (err) => {
+    error: (err:any) => {
       console.error('Error updating note:', err);
     },
   });

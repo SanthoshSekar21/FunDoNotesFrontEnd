@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotesCotainerComponent } from './notes-cotainer/notes-cotainer.component';
-import { ArchiveContainerComponent } from './archive-container/archive-container.component';
-import { TrashContainerComponent } from './trash-container/trash-container.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NotesCotainerComponent } from './components/notes-cotainer/notes-cotainer.component';
+import { ArchiveContainerComponent } from './components/archive-container/archive-container.component';
+import { TrashContainerComponent } from './components/trash-container/trash-container.component';
 
 const routes: Routes = [
   {

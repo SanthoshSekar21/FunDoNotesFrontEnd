@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpService } from '../service/http-service/http.service';
+import { HttpService } from '../../service/http-service/http.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -37,11 +37,11 @@ export class RegisterComponent {
             const { Firstname, Lastname, Email, Password } = this.registerForm.value;
 
             this.httpService.registerApiCall('/api/v1/users/register', { Firstname, Lastname, Email, Password }).subscribe({
-                next: (res) => {
+                next: (res:any) => {
                     this.router.navigate(['']);
                     console.log(res);
                 },
-                error: (err) => {
+                error: (err:any) => {
                   if (err.status === 400 && err.error && err.error.message) {
                     this.backendError = err.error?.message;
                   } else {
