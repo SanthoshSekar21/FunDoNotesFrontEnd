@@ -28,4 +28,7 @@ updateNoteApiCall(endpoint: string,data:any,header:any) {
     return this.http.put('http://localhost:3000'+endpoint,null,header);
   }
   
+  trashNoteApiCall(endpoint:string,header:any){
+    return this.http.put('http://localhost:3000'+endpoint,null,header);
+  }
 }

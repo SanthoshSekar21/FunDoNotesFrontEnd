@@ -38,7 +38,7 @@
        mat-icon-button 
        aria-label="trash" 
        matTooltip="Trash" 
-       (click)="$event.stopPropagation()">
+       (click)=" trashNoteOperation(); $event.stopPropagation()">
      <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
    </button>
     <button class="small-icon-button " 

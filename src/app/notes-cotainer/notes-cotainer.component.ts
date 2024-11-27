@@ -45,5 +45,8 @@ export class NotesCotainerComponent {
     } else if (action === 'archive' && data) {
       this.notesList = this.notesList.filter(note => note._id !== data._id);
     }
+     else if(action==='trash'&& data){
+      this.notesList=this.notesList.filter(note=>note._id!==data._id);
+     }
   }
 }

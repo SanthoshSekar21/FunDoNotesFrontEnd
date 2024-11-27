@@ -20,8 +20,10 @@ export class NoteCardComponent {
   @Output() updateList = new EventEmitter<{ data: { _id: string; title: string; description: string }; action: string }>();
 
   constructor(private dialog: MatDialog) {}
-  handleNoteIconsClick(action: string, event: MouseEvent): void {
-    this.updateList.emit({ data: this.noteDetails, action });
+  handleNoteIconsClick($event:any): void {
+    const { action, data } = $event;  
+    console.log(action);
+    this.updateList.emit({ data, action }); 
   }
   openUpdateDialog(note: { _id: string; title: string; description: string }): void {
     this.dialogRef = this.dialog.open(UpdateNoteComponent, {
