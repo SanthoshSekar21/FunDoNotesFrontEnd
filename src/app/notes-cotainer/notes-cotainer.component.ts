@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpService } from '../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
 
@@ -13,6 +13,7 @@ export class NotesCotainerComponent {
     title: '',
     description: '',
   };
+  @Output() archiveNote= new EventEmitter<{ data: { title: string; description: string }; action: string }>();
 
   public notesList: { _id: string; title: string; description: string }[] = [];
   constructor(private httpService: HttpService) {}
@@ -35,22 +36,19 @@ export class NotesCotainerComponent {
 
   handleUpdateList($event: any) {
     const { data, action } = $event;
-
     if (action === 'add' && data) {
       if (data.title && data.description) {
         this.notesList.push(data);
       }
-    } else if (action === 'archive') {
-      const header = new HttpHeaders().set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-      this.httpService.archiveNoteApiCall(`/api/v1/notes/${data._id}/archive`, { headers: header }).subscribe({
-        next: (res: any) => {
-          console.log('Note archived successfully');
-          this.notesList = this.notesList.filter((note) => note._id !== data._id);
-        },
-        error: (err: any) => {
-          console.error('Error archiving note:', err);
-        }
-      });
+    } else if (action === 'archive'&& data) {
+       this.archiveNote.emit(data);
+    
+      
     }
+  }
+  handleArchiveNote(updatedNote: any) {
+
+
+    this.notesList = this.notesList.filter((note) => note._id !== updatedNote._id);
   }
 }
