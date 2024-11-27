@@ -1,1 +1,5 @@
-<p>trash-container works!</p>
+<div class="trash-container">
+    <div *ngFor="let note of trashList" class="note-card">
+      <app-note-card [noteDetails]="note"  (updateList)=" handleTrashList($event)"></app-note-card>
+    </div>
+  </div>

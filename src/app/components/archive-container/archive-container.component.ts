@@ -13,7 +13,7 @@ export class ArchiveContainerComponent implements OnInit {
     title: '',
     description: ''
   };
-  archiveList: any[] = []; // Array to hold the archived notes
+  archiveList: any[] = []; 
   
   constructor(private httpService: HttpService) {}
 
@@ -36,6 +36,9 @@ export class ArchiveContainerComponent implements OnInit {
     const {data,action}=event;
     if (action === 'archive' && data) {
       this.archiveList = this.archiveList.filter(note => note._id !== data._id);
+  }
+  else if(action==='trash'&& data){
+    this.archiveList=this.archiveList.filter(note => note._id!==data._id);
   }
 }
 }
