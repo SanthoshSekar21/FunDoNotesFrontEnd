@@ -1,5 +1,5 @@
 <div class="note-card" (click)="openUpdateDialog(noteDetails)">
   <span class="note-title">  {{ noteDetails.title }}</span>
     <span class="note-content">{{ noteDetails.description }}</span>
-    <app-icon></app-icon> 
+    <app-icon [noteDetails]="noteDetails" (archiveNote)="handleNoteIconsClick('archive', $event)" ></app-icon>
 </div>

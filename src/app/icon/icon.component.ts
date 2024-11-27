@@ -13,7 +13,6 @@ export class IconComponent {
 
   constructor(private httpService: HttpService) {}
   archiveNoteOperation() {
-    console.log('--------')
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.httpService.archiveNoteApiCall(`/api/v1/notes/${this.noteDetails._id}/archive`, { headers: header }).subscribe({
       next: (res: any) => {

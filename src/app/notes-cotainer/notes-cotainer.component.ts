@@ -13,20 +13,22 @@ export class NotesCotainerComponent {
     title: '',
     description: '',
   };
-  @Output() archiveNote= new EventEmitter<{ data: { title: string; description: string }; action: string }>();
+
 
   public notesList: { _id: string; title: string; description: string }[] = [];
+
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     this.notesList = [];
     this.fetchNotes();
   }
+
   fetchNotes() {
-   const header = new HttpHeaders().set( 'Authorization', `Bearer ${localStorage.getItem('token')}` );
-    this.httpService.getAllNotesApiCall('/api/v1/notes/', { headers:header }).subscribe({
+    const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    this.httpService.getAllNotesApiCall('/api/v1/notes/', { headers: header }).subscribe({
       next: (res: any) => {
-        this.notesList = res.data; 
+        this.notesList = res.data;
       },
       error: (err: any) => {
         console.error('Error fetching notes:', err);
@@ -40,15 +42,8 @@ export class NotesCotainerComponent {
       if (data.title && data.description) {
         this.notesList.push(data);
       }
-    } else if (action === 'archive'&& data) {
-       this.archiveNote.emit(data);
-    
-      
+    } else if (action === 'archive' && data) {
+      this.notesList = this.notesList.filter(note => note._id !== data._id);
     }
-  }
-  handleArchiveNote(updatedNote: any) {
-
-
-    this.notesList = this.notesList.filter((note) => note._id !== updatedNote._id);
   }
 }
