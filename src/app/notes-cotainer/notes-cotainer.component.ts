@@ -28,7 +28,7 @@ export class NotesCotainerComponent {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.httpService.getAllNotesApiCall('/api/v1/notes/', { headers: header }).subscribe({
       next: (res: any) => {
-        this.notesList = res.data;
+        this.notesList = res.data.filter((note: any) => note.isArchive === false && note.isTrash===false);
       },
       error: (err: any) => {
         console.error('Error fetching notes:', err);

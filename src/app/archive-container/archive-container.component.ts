@@ -1,10 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HttpService } from '../service/http-service/http.service';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-archive-container',
   templateUrl: './archive-container.component.html',
   styleUrls: ['./archive-container.component.scss']
 })
-export class ArchiveContainerComponent {
+export class ArchiveContainerComponent implements OnInit {
+  @Input() noteDetails: { _id: string; title: string; description: string } = {
+    _id: '',
+    title: '',
+    description: ''
+  };
+  archiveList: any[] = []; // Array to hold the archived notes
+  
+  constructor(private httpService: HttpService) {}
 
+  ngOnInit() {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`);
+
+    console.log('Authorization header:', headers);
+
+    this.httpService.getAllNotesApiCall('/api/v1/notes', { headers }).subscribe({
+      next: (res: any) => {
+        // Filter archived notes
+        this.archiveList = res.data.filter((note: any) => note.isArchive === true);
+      },
+      error: (err) => {
+        console.error('Error fetching archived notes:', err);
+      }
+    });
+  }
+  handleArchiveList(event:any){
+    const {data,action}=event;
+    if (action === 'archive' && data) {
+      this.archiveList = this.archiveList.filter(note => note._id !== data._id);
+  }
+}
 }

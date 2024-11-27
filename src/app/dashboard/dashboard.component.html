@@ -7,8 +7,10 @@
 
   <mat-drawer-container class="example-container"  (click)="handleOutsideClick()">
     <mat-drawer #drawer mode="side" [opened]="drawerState" class="full-height-drawer" (click)="stopPropagation($event)">
-      <h2>Drawer Content</h2>
-      <p>Drawer content goes here.</p>
+        <button class="small-icon-button" mat-icon-button aria-label="archive" matTooltip="Archive" (click)="naveToArchive()">
+      <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon">Archive</mat-icon>
+    </button>
+      
     </mat-drawer>
 
     <mat-drawer-content class="content-container">
