@@ -1,27 +1,39 @@
 <div class="dashboard-container">
+  <header>
+    <!-- Menu Button -->
+    <button mat-icon-button (click)="toggleDrawer()" aria-label="Toggle Drawer" matTooltip="Toggle Menu" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="app-name">FunDoNotes</span>
+    <div class="header">
+      <input type="text" id="search" placeholder="Search notes..." class="search-box">
+    </div>
+  </header>
 
- <header>
-  <button mat-icon-button (click)="handleDrawerClick()" aria-label="Toggle Drawer" matTooltip="Open Menu" class="menu-button" [ngClass]="{'hidden': drawerState}">
-    <mat-icon>menu</mat-icon>
-  </button>
-</header>
-  <mat-drawer-container class="example-container" (click)="handleOutsideClick()">
-    <mat-drawer #drawer mode="side" [opened]="drawerState" class="full-height-drawer" (click)="stopPropagation($event)">
-      <button class="small-icon-button" mat-icon-button aria-label="notes" matTooltip="Notes" (click)="navigateToNotes()">
-        <mat-icon svgIcon="notes-icon" aria-hidden="false" aria-label="notes icon"></mat-icon>
-      </button> 
-      <button class="small-icon-button" mat-icon-button aria-label="archive" matTooltip="Archive" (click)="navigateToArchive()">
-          <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon">Archive</mat-icon>
-        </button>
-        <button class="small-icon-button" mat-icon-button aria-label="trash" matTooltip="Trash" (click)="navigateToTrash()">
-          <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
-        </button>
+  <mat-drawer-container class="example-container">
+    <mat-drawer 
+      #drawer 
+      mode="side" 
+      class="custom-drawer"
+      [ngClass]="{ 'drawer-expanded': isExpanded, 'drawer-partial': !isExpanded }"
+      [opened]="true">
+      <span class="drawer-item" mat-icon-button (click)="navigateToNotes()" aria-label="Notes">
+        <mat-icon  svgIcon="notes-icon"></mat-icon>
+        <span class="drawer-label">Notes</span>
+      </span>
+     
+      <span class="drawer-item" mat-icon-button (click)="navigateToArchive()" aria-label="Archive">
+        <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
+        <span class="drawer-label">Archive</span>
+      </span>
       
+      <span class="drawer-item" mat-icon-button (click)="navigateToTrash()" aria-label="Trash">
+        <mat-icon svgIcon="trash-icon" aria-hidden="true" aria-label="trash icon" ></mat-icon>
+        <span class="drawer-label">Trash</span>
+      </span>
     </mat-drawer>
-
     <mat-drawer-content class="content-container">
       <router-outlet></router-outlet>
     </mat-drawer-content>
   </mat-drawer-container>
-
 </div>

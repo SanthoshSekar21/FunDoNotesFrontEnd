@@ -7,6 +7,7 @@ import{MatButtonModule} from '@angular/material/button'
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -53,7 +54,8 @@ import { IconComponent } from './components/icon/icon.component';
     HttpClientModule,
     MatSidenavModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
