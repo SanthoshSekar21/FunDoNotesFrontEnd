@@ -39,5 +39,13 @@ export class ArchiveContainerComponent implements OnInit {
   else if(action==='trash'&& data){
     this.archiveList=this.archiveList.filter(note => note._id!==data._id);
   }
+  else if(action==='color-change'&& data){
+    this.archiveList=this.archiveList.map((note) => {
+      if (note._id ===data.noteId) {
+        return { ...note, color: data.color };
+      }
+      return note; 
+    });
+  }
 }
 }
