@@ -24,8 +24,7 @@ export class ArchiveContainerComponent implements OnInit {
 
     this.httpService.getAllNotesApiCall('/api/v1/notes', { headers }).subscribe({
       next: (res: any) => {
-        // Filter archived notes
-        this.archiveList = res.data.filter((note: any) => note.isArchive === true);
+        this.archiveList = res.data.filter((note: any) => note.isArchive === true && note.isTrash===false);
       },
       error: (err) => {
         console.error('Error fetching archived notes:', err);
