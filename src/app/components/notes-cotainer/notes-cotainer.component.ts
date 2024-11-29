@@ -8,15 +8,17 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./notes-cotainer.component.scss']
 })
 export class NotesCotainerComponent {
-  @Input() noteDetails: { _id: string; title: string; description: string;color:string } = {
+  @Input() noteDetails: { _id: string; title: string; description: string;color:string;isTrash:boolean;isArchive:boolean } = {
     _id: '',
     title: '',
     description: '',
-    color:''
+    color:'',
+    isArchive:false,
+    isTrash:false
   };
 
 
-  public notesList: { _id: string; title: string; description: string;color:string }[] = [];
+  public notesList: { _id: string; title: string; description: string;color:string; isTrash:boolean; isArchive:boolean}[] = [];
   selectedColor!: string;
 
   constructor(private httpService: HttpService) {}

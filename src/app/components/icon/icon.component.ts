@@ -11,7 +11,7 @@ import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent {
-  @Input() noteDetails!: { _id: string; title: string; description: string;color:{code:string,name:string} };
+  @Input() noteDetails!: { _id: string; title: string; description: string;color:{code:string,name:string},isTrash:boolean,isArchive:boolean };
   @Output() iconOperation: EventEmitter<any> = new EventEmitter();
 
  colorArray: Array<any> = [
@@ -43,7 +43,7 @@ export class IconComponent {
     iconRegistry.addSvgIconLiteral('restore-icon', sanitizer.bypassSecurityTrustHtml(RESTORE_ICON));
     iconRegistry.addSvgIconLiteral('unarchive-icon', sanitizer.bypassSecurityTrustHtml(UNARCHIVE_ICON));
     iconRegistry.addSvgIconLiteral('trash-icon', sanitizer.bypassSecurityTrustHtml(TRASH_ICON));
-  
+   
   }
    toggleColorPalette(){
     this.showPalette=!this.showPalette;

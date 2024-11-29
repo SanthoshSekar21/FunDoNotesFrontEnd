@@ -11,11 +11,13 @@ export class NoteCardComponent {
 
   private dialogRef: MatDialogRef<UpdateNoteComponent> | null = null;
 
-  @Input() noteDetails: { _id: string; title: string; description: string; color:any } = {
+  @Input() noteDetails: { _id: string; title: string; description: string; color:any;isTrash:boolean;isArchive:boolean } = {
     _id: '',
     title: '',
     description: '',
-    color:''
+    color:'',
+    isArchive:false,
+    isTrash:false
   };
 
   @Output() updateList = new EventEmitter<{ data: { _id: string; title: string; description: string }; action: string }>();
