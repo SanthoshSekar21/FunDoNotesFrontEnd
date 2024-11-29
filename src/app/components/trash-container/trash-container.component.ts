@@ -37,5 +37,8 @@ export class TrashContainerComponent {
     if (action === 'archive' && data) {
       this.trashList = this.trashList.filter(note => note._id !== data._id);
   }
+   else if(action==='trash' && data){
+    this.trashList=this.trashList.filter(note=>note._id!==data._id)
+   }
 }
 }
