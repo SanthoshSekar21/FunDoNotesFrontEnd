@@ -1,4 +1,4 @@
-<div class="note-card" (click)="openUpdateDialog(noteDetails)">
+<div class="note-card"  [ngStyle]="{'background-color':noteDetails.color || '#ffffff'}"  (click)="openUpdateDialog(noteDetails)">
   <span class="note-title">  {{ noteDetails.title }}</span>
     <span class="note-content">{{ noteDetails.description }}</span>
     <app-icon [noteDetails]="noteDetails" (iconOperation)="handleNoteIconsClick($event)" ></app-icon>

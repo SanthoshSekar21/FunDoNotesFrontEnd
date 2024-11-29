@@ -11,9 +11,28 @@ import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent {
-  @Input() noteDetails!: { _id: string; title: string; description: string };
+  @Input() noteDetails!: { _id: string; title: string; description: string;color:{code:string,name:string} };
   @Output() iconOperation: EventEmitter<any> = new EventEmitter();
 
+  colorArray: Array<any> = [
+    { code: '#ffffff', name: 'white' },
+    { code: '#FF6347', name: 'Tomato' },
+    { code: '#FF4500', name: 'OrangeRed'},
+    { code: '#FFFF00', name: 'yellow' },
+    { code: '#ADFF2F', name: 'greenyellow' },
+    { code: '#B0C4DE', name: 'LightSteelBlue' },
+    { code: '#EEE8AA', name: 'PaleGoldenRod' },
+    { code: '#7FFFD4', name: 'Aquamarine' },
+    { code: '#FFE4C4', name: 'Bisque' },
+    { code: '#C0C0C0', name: 'Silver' },
+    { code: '#BC8F8F', name: 'RosyBrown'},
+    { code: '#D3D3D3', name: 'grey' },
+  ];
+  
+  selectedColor: string = '#FFFFFF'; 
+  showPalette: boolean = false; 
+
+  
   constructor(private httpService: HttpService,    private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,) {
      iconRegistry.addSvgIconLiteral('reminder-icon', sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
     iconRegistry.addSvgIconLiteral('collabrator-icon', sanitizer.bypassSecurityTrustHtml(COLLABRATOR_ICON));
@@ -27,8 +46,29 @@ export class IconComponent {
     iconRegistry.addSvgIconLiteral('trash-icon', sanitizer.bypassSecurityTrustHtml(TRASH_ICON));
   
   }
-
-  // Archive note operation
+   togglePallet(){
+    this.showPalette=!this.showPalette;
+   }
+ 
+    selectColor(color:any): void {
+    
+      this.selectedColor = color.code;
+      console.log(this.selectedColor)
+      
+      const headers = new HttpHeaders().set( 'Authorization',`Bearer ${localStorage.getItem('token') || ''}`);
+      this.httpService.updateNoteApiCall(`/api/v1/notes/${this.noteDetails._id}`, { title: this.noteDetails.title,description: this.noteDetails.description, color:this.selectedColor},{ headers })
+    .subscribe({
+      next: (res: any) => {
+        console.log('Note updated:', res);
+        this.iconOperation.emit({ action: 'color-change', data: { color: this.selectedColor, noteId: this.noteDetails._id } });
+      },
+      error: (err:any) => {
+        console.error('Error updating note:', err);
+      },
+    });
+    }
+  
+  
   archiveNoteOperation() {
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.httpService.archiveNoteApiCall(`/api/v1/notes/${this.noteDetails._id}/archive`, { headers: header }).subscribe({
@@ -55,4 +95,6 @@ export class IconComponent {
       }
     });
   }
+
+  
 }

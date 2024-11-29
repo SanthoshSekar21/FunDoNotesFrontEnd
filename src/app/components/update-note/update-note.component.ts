@@ -20,6 +20,7 @@ export class UpdateNoteComponent {
   onClose() {
     this.dialogRef.close({ updated: true, note: this.noteDetails });
     const headers = new HttpHeaders().set( 'Authorization',`Bearer ${localStorage.getItem('token') || ''}`);
+    console.log(this.noteDetails.title);
     this.httpService.updateNoteApiCall(`/api/v1/notes/${this.noteDetails._id}`, { title: this.noteDetails.title,description: this.noteDetails.description,},{ headers })
   .subscribe({
     next: (res: any) => {

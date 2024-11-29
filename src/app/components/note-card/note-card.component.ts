@@ -11,21 +11,21 @@ export class NoteCardComponent {
 
   private dialogRef: MatDialogRef<UpdateNoteComponent> | null = null;
 
-  @Input() noteDetails: { _id: string; title: string; description: string } = {
+  @Input() noteDetails: { _id: string; title: string; description: string; color:any } = {
     _id: '',
     title: '',
-    description: ''
+    description: '',
+    color:''
   };
 
   @Output() updateList = new EventEmitter<{ data: { _id: string; title: string; description: string }; action: string }>();
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) {}  
   handleNoteIconsClick($event:any): void {
     const { action, data } = $event;  
-    console.log(action);
     this.updateList.emit({ data, action }); 
   }
-  openUpdateDialog(note: { _id: string; title: string; description: string }): void {
+  openUpdateDialog(note: { _id: string; title: string; description: string; color:string}): void {
     this.dialogRef = this.dialog.open(UpdateNoteComponent, {
       width: '640px',
       data: note
