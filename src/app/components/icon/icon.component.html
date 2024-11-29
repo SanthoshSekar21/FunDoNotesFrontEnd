@@ -17,7 +17,7 @@
        mat-icon-button 
        aria-label="color button" 
        matTooltip="Background Color Options" 
-       (click)="togglePallet(); $event.stopPropagation()">
+       (click)="toggleColorPalette(); $event.stopPropagation()">
      <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
    </button>
     <button class="small-icon-button " 
@@ -54,8 +54,9 @@
    </div>
    <div *ngIf="showPalette" class="color-palette-popup">
     <div *ngFor="let color of colorArray" 
-         [style.background]="color" 
-         class="color-box" 
-         (click)="selectColor(color); $event.stopPropagation()">
-    </div>
+     [style.background]="color.code" 
+     class="color-box" 
+     (click)="selectColor(color.code); $event.stopPropagation()">
+</div>
+
   </div>

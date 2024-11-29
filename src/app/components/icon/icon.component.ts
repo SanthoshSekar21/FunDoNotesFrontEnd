@@ -14,22 +14,21 @@ export class IconComponent {
   @Input() noteDetails!: { _id: string; title: string; description: string;color:{code:string,name:string} };
   @Output() iconOperation: EventEmitter<any> = new EventEmitter();
 
-  colorArray: Array<any> = [
-    { code: '#ffffff', name: 'white' },
-    { code: '#FF6347', name: 'Tomato' },
-    { code: '#FF4500', name: 'OrangeRed'},
-    { code: '#FFFF00', name: 'yellow' },
-    { code: '#ADFF2F', name: 'greenyellow' },
-    { code: '#B0C4DE', name: 'LightSteelBlue' },
-    { code: '#EEE8AA', name: 'PaleGoldenRod' },
-    { code: '#7FFFD4', name: 'Aquamarine' },
-    { code: '#FFE4C4', name: 'Bisque' },
-    { code: '#C0C0C0', name: 'Silver' },
-    { code: '#BC8F8F', name: 'RosyBrown'},
-    { code: '#D3D3D3', name: 'grey' },
-  ];
-  
-  selectedColor: string = '#FFFFFF'; 
+ colorArray: Array<any> = [
+  { code: '#ffffff', name: 'White' },
+  { code: '#faafa8', name: 'PalePink' },
+  { code: '#f39f76', name: 'LightCoral' },
+  { code: '#fff8b8', name: 'PaleYellow' },
+  { code: '#e2f6d3', name: 'LightGreen' },
+  { code: '#b4ddd3', name: 'LightTurquoise' },
+  { code: '#d4e4ed', name: 'LightBlue' },
+  { code: '#aeccdc', name: 'SkyBlue' },
+  { code: '#d3bfdb', name: 'Lavender' },
+  { code: '#f6e2dd', name: 'Peach' },
+  { code: '#e9e3d4', name: 'Beige' },
+  { code: '#efeff1', name: 'SilverGrey' }
+];
+  selectedColor: string = '#fffff'; 
   showPalette: boolean = false; 
 
   
@@ -46,15 +45,14 @@ export class IconComponent {
     iconRegistry.addSvgIconLiteral('trash-icon', sanitizer.bypassSecurityTrustHtml(TRASH_ICON));
   
   }
-   togglePallet(){
+   toggleColorPalette(){
     this.showPalette=!this.showPalette;
    }
  
     selectColor(color:any): void {
     
-      this.selectedColor = color.code;
-      console.log(this.selectedColor)
-      
+      this.selectedColor = color;
+      console.log(this.selectedColor);
       const headers = new HttpHeaders().set( 'Authorization',`Bearer ${localStorage.getItem('token') || ''}`);
       this.httpService.updateNoteApiCall(`/api/v1/notes/${this.noteDetails._id}`, { title: this.noteDetails.title,description: this.noteDetails.description, color:this.selectedColor},{ headers })
     .subscribe({

@@ -54,13 +54,10 @@ export class NotesCotainerComponent {
 
       if (action === 'color-change') {
         this.selectedColor = data.color;
-         console.log(this.selectedColor)
         this.noteDetails.color = data.color; 
-        console.log(data)
         this.notesList = this.notesList.map((note) => {
-          console.log(note._id)
           if (note._id ===data.noteId) {
-            console.log(data,'--------');
+           
             return { ...note, color: data.color };
           }
           return note; 
