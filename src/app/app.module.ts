@@ -25,6 +25,7 @@ import { TrashContainerComponent } from './components/trash-container/trash-cont
 import { ArchiveContainerComponent } from './components/archive-container/archive-container.component';
 import { UpdateNoteComponent } from './components/update-note/update-note.component';
 import { IconComponent } from './components/icon/icon.component';
+import { FilterPipe } from './pipe/filter.pipe';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { IconComponent } from './components/icon/icon.component';
     TrashContainerComponent,
     ArchiveContainerComponent,
     UpdateNoteComponent,
-    IconComponent
+    IconComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,7 @@ import { IconComponent } from './components/icon/icon.component';
     MatSidenavModule,
     MatDialogModule,
     MatMenuModule,
-    MatTooltipModule
+   MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
