@@ -59,17 +59,17 @@
      <button mat-menu-item>Item 2</button>
    </mat-menu> </button>
    <button   *ngIf="noteDetails.isTrash" class="small-icon-button " 
-   mat-icon-button 
-   aria-label="restore" 
-   matTooltip="Restore" 
-   (click)=" trashNoteOperation(); $event.stopPropagation()">
+      mat-icon-button 
+      aria-label="restore" 
+      matTooltip="Restore" 
+     (click)=" trashNoteOperation(); $event.stopPropagation()">
  <mat-icon svgIcon="restore-icon" aria-hidden="false" aria-label="restore icon"></mat-icon>
 </button>
 <button   *ngIf="noteDetails.isTrash" class="small-icon-button " 
 mat-icon-button 
 aria-label="delete" 
 matTooltip="Delete" 
-(click)=" $event.stopPropagation()">
+(click)="  deleteNoteOperation(); $event.stopPropagation()">
 <mat-icon svgIcon="delete-forever-icon" aria-hidden="false" aria-label="delete icon"></mat-icon>
 </button>
    </div>

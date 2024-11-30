@@ -18,17 +18,16 @@ export class TrashContainerComponent {
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
-    const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`);
-
-    console.log('Authorization header:', headers);
-
-    this.httpService.getAllNotesApiCall('/api/v1/notes', { headers }).subscribe({
+    this.fetchTrashList();
+  }
+  fetchTrashList() {
+    const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`); 
+    this.httpService.getAllNotesApiCall('/api/v1/notes/',{headers}).subscribe({
       next: (res: any) => {
-        // Filter archived notes
         this.trashList = res.data.filter((note: any) => note.isTrash === true);
       },
       error: (err) => {
-        console.error('Error fetching archived notes:', err);
+        console.error('Error fetching trash notes:', err);
       }
     });
   }
@@ -39,6 +38,9 @@ export class TrashContainerComponent {
   }
    else if(action==='trash' && data){
     this.trashList=this.trashList.filter(note=>note._id!==data._id)
+   }
+   else if(action==='delete'&& data){
+    this.trashList=this.trashList.filter(note=>note._id!==data._id );
    }
 }
 }

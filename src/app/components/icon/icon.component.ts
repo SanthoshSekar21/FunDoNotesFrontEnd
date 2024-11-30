@@ -86,10 +86,22 @@ export class IconComponent {
       next: (res: any) => {
         console.log('Note trashed successfully');
         this.iconOperation.emit({ action: 'trash', data: this.noteDetails });
-
       },
       error: (err: any) => {
         console.error('Error trashing note:', err);
+      }
+    });
+  }
+   
+  deleteNoteOperation(){
+    const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    this.httpService.deleteNoteApiCall(`/api/v1/notes/${this.noteDetails._id}/delete`, { headers: header }).subscribe({
+      next: (res: any) => {
+        console.log('Note deleted successfully');
+        this.iconOperation.emit({ action: 'delete', data: this.noteDetails });
+      },
+      error: (err: any) => {
+        console.error('Error deleting note:', err);
       }
     });
   }
