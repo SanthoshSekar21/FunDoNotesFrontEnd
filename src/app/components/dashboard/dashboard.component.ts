@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/service/dataservices/data.service';
 import { ARCHIVE_ICON, LIST_VIEW_ICON, NOTE_ICON, REFRESH_ICON, SETTING_ICON, TRASH_ICON } from 'src/assets/svg-icons';
 
 @Component({
@@ -10,14 +11,15 @@ import { ARCHIVE_ICON, LIST_VIEW_ICON, NOTE_ICON, REFRESH_ICON, SETTING_ICON, TR
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  isHalfOpen = true; // Start in the half-open state
-  isExpanded = false; // Start in the half-open state, not fully expanded
+  isHalfOpen = true; 
+  isExpanded = false; 
   selectedItem: string = 'notes';
  
   constructor(
     public iconRegistry:MatIconRegistry,
     public sanitizer:DomSanitizer,
-    private router: Router
+    private router: Router,
+    private data: DataService
   ) {
     iconRegistry.addSvgIconLiteral('archive-icon', sanitizer.bypassSecurityTrustHtml(ARCHIVE_ICON));
     iconRegistry.addSvgIconLiteral('trash-icon', sanitizer.bypassSecurityTrustHtml(TRASH_ICON));
@@ -47,5 +49,9 @@ export class DashboardComponent {
   navigateToNotes() {
     this.selectedItem = 'notes';
     this.router.navigate(['dashboard/notes']);
+  }
+  search(event: any) {
+    console.log(event.target.value)
+    this.data.outgoingData(event.target.value);
   }
 }

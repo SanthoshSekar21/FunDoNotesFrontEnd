@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
+import { DataService } from 'src/app/service/dataservices/data.service';
 
 @Component({
   selector: 'app-notes-cotainer',
@@ -20,12 +21,17 @@ export class NotesCotainerComponent {
 
   public notesList: { _id: string; title: string; description: string;color:string; isTrash:boolean; isArchive:boolean}[] = [];
   selectedColor!: string;
+  filterNote: any;
 
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService, private data: DataService) {}
 
   ngOnInit() {
     this.notesList = [];
     this.fetchNotes();
+    this.data.incomingData.subscribe((response) => {
+      console.log("Search in process", response);
+      this.filterNote = response;
+    })
   }
 
   fetchNotes() {
@@ -38,6 +44,7 @@ export class NotesCotainerComponent {
         console.error('Error fetching notes:', err);
       }
     });
+    
   }
 
   handleUpdateList($event: any) {
