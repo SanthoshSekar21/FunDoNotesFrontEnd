@@ -1,11 +1,27 @@
 <div class="dashboard-container">
-  <header>
+  <header class="header">
     <button mat-icon-button (click)="toggleDrawer()" aria-label="Toggle Drawer" matTooltip="Toggle Menu" class="menu-button">
       <mat-icon>menu</mat-icon>
     </button>
     <span class="app-name">FunDoNotes</span>
-    <div class="header">
-      <input type="text" id="search" placeholder="Search notes..." class="search-box">
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input type="text" id="search" placeholder="Search notes..." class="search-box" />
+        <button mat-icon-button aria-label="Search" class="search-icon">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="header-icons">
+      <button mat-icon-button aria-label="Refresh">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="List View">
+        <mat-icon>view_list</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Settings">
+        <mat-icon>settings</mat-icon>
+      </button>
     </div>
   </header>
 
@@ -17,33 +33,25 @@
       [opened]="true"
       [ngClass]="{ 'drawer-expanded': isExpanded, 'drawer-partial': !isExpanded }"
       [opened]="isExpanded"></mat-drawer>
-      
-    <!-- Partial Drawer (always 60px, expands on hover) -->
      <mat-drawer 
       #partialDrawer 
       mode="side" 
       class="custom-drawer"
       [ngClass]="{ 'drawer-expanded': isExpanded, 'drawer-partial': !isExpanded }"
       [opened]="true">
-      <span class="drawer-item" mat-icon-button (click)="navigateToNotes()" aria-label="Notes">
+      <span class="drawer-item" mat-icon-button (click)="navigateToNotes()" aria-label="Notes" [ngClass]="{'active': selectedItem === 'notes'}">
         <mat-icon svgIcon="notes-icon"></mat-icon>
         <span class="drawer-label">Notes</span>
       </span>
-
-      <span class="drawer-item" mat-icon-button (click)="navigateToArchive()" aria-label="Archive">
+      <span class="drawer-item" mat-icon-button (click)="navigateToArchive()" aria-label="Archive" [ngClass]="{'active': selectedItem === 'archive'}">
         <mat-icon svgIcon="archive-icon"></mat-icon>
         <span class="drawer-label">Archive</span>
       </span>
-
-      <span class="drawer-item" mat-icon-button (click)="navigateToTrash()" aria-label="Trash">
+      <span class="drawer-item" mat-icon-button (click)="navigateToTrash()" aria-label="Trash"  [ngClass]="{'active': selectedItem === 'trash'}">
         <mat-icon svgIcon="trash-icon"></mat-icon>
         <span class="drawer-label">Trash</span>
       </span>
-    
-
-  </mat-drawer>
-
-    <!-- Content Container -->
+    </mat-drawer>
     <mat-drawer-content class="content-container" [ngClass]="{'content-expanded': isExpanded}">
       <router-outlet></router-outlet>
     </mat-drawer-content>

@@ -10,7 +10,6 @@ body {
   background-color: #f5f5f5;
   height: 100%;
 }
-
 .dashboard-container {
   display: flex;
   flex-direction: column;
@@ -21,7 +20,7 @@ body {
 /* Header Styles */
 header {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
   background-color: #ffffff;
@@ -29,6 +28,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
 
 .menu-button {
@@ -39,41 +39,81 @@ header {
 .app-name {
   font-size: 24px;
   font-weight: bold;
-  margin-right: 8%;
+  margin-right: 20px; 
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; 
+  margin: 0 20px; 
 }
 
-.header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-grow: 1;
-  gap: 20px;
-  padding: 8px;
+.search-wrapper {
+  position: relative; 
+  width: 100%;
+  max-width: 800px; 
 }
 
 .search-box {
   width: 100%;
-  max-width: 500px;
-  padding: 12px;
+  padding: 12px 12px 12px 40px; 
   border-radius: 6px;
   background-color: #ffffff;
   border: 1px solid #afaaaa;
   font-size: 16px;
   outline: none;
-  margin-left: 20px;
 }
 
 .search-box:focus {
   border-color: #898b89;
 }
 
+.search-icon {
+  position: absolute; 
+  justify-content: center;
+  display: flex;
+  top: 50%;
+  left: 0; 
+  transform: translateY(-50%); 
+  background: none; 
+  border: none;
+  cursor: pointer; 
+  color:black; 
+}
+
+.search-icon mat-icon {
+  width: 20px; 
+  height: 20px; 
+}
+.header-icons {
+  display: flex;
+  gap: 15px; 
+}
+
+.header-icons button {
+  color: black; 
+}
+
+.header-icons mat-icon {
+  width: 24px;
+  height: 24px;
+  fill: currentColor; 
+  transition: color 0.3s; 
+}
+
+.header-icons button:hover mat-icon {
+  color: #007bff; 
+}
+
+
 .custom-drawer {
   transition: width 0.3s ease;
   overflow-x: hidden;  
   overflow-y: hidden; 
-  height: 100vh; 
+  height:100vh ;
   background-color:  #fff; 
   position: absolute;
+  top: 10px;
 }
 
 .drawer-partial {
@@ -97,8 +137,19 @@ header {
   cursor: pointer;
   background-color: transparent;
   z-index: 100;
+  border-radius: 0 60px  60px 0;
 }
+.drawer-item.active {
+  background-color: #fce062f1; 
+}
+.drawer-partial .drawer-item{
+  border-radius: 50%;
+  padding: 17px;
 
+}
+.drawer-partial:hover .drawer-item{
+  border-radius: 0 60px  60px 0;
+}
 .mat-icon {
   width: 24px;
   height: 24px;
@@ -116,7 +167,7 @@ header {
 }
 
 .drawer-item:hover {
-  background-color: #f1f1f1;
+  border-radius: 0 60px  60px 0;
 }
 
 .drawer-expanded .drawer-label {
@@ -124,10 +175,6 @@ header {
   opacity: 1;
 }
 
-.drawer-partial .drawer-label {
-  visibility: hidden;
-  opacity: 0; 
-}
 
 .content-container {
   flex-grow: 1;
@@ -135,40 +182,19 @@ header {
   background-color: #ffffff;
   padding-bottom: 20px;
   overflow-y: auto;
-  height: calc(100vh - 60px - 20px);  /* Adjust for the header */
+  height: calc(100vh - 60px - 20px);  
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  transition: margin-left 0.3s ease; /* Smooth transition */
+  transition: margin-left 0.3s ease; 
   margin-left: 0;
 }
 
 .content-expanded {
-  margin-left: 250px;  /* Adjust this according to the expanded drawer width */
+  margin-left: 250px; 
 }
 
-.drawer-partial ~ .content-container {
-  margin-left: 60px;  /* Adjust this according to the collapsed drawer width */
-}
-
-.custom-drawer {
-  transition: width 0.3s ease;
-  overflow-x: hidden;  
-  height: 100vh;
-  background-color: #fff;
-}
-
-.drawer-expanded {
-  width: 250px;  /* Expanded drawer width */
-}
-
-.drawer-partial {
-  width: 60px;  /* Collapsed drawer width */
-}
-
-/* Adjust the content-container when the drawer is partial */
 .drawer-partial ~ .content-container {
   margin-left: 60px; 
 }
-
 
 .drawer-partial:hover {
   width: 250px; 
