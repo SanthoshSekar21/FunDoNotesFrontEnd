@@ -10,9 +10,10 @@ import { ARCHIVE_ICON, NOTE_ICON, TRASH_ICON } from 'src/assets/svg-icons';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  drawerState: boolean = false; 
-  drawerExpanded: boolean = false; 
- isExpanded: boolean=false ;
+  isHalfOpen = true; // Start in the half-open state
+  isExpanded = false; // Start in the half-open state, not fully expanded
+
+ 
   constructor(
     public iconRegistry:MatIconRegistry,
     public sanitizer:DomSanitizer,
@@ -24,7 +25,15 @@ export class DashboardComponent {
   }
 
   toggleDrawer() {
-    this.isExpanded = !this.isExpanded; 
+    if (this.isHalfOpen) {
+      // If half-open, expand it fully
+      this.isHalfOpen = false;
+      this.isExpanded = true;
+    } else if (this.isExpanded) {
+      // If fully expanded, close it halfway
+      this.isExpanded = false;
+      this.isHalfOpen = true;
+    }
   }
 
   stopPropagation(event: Event) {

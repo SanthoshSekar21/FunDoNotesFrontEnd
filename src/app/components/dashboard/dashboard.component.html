@@ -1,6 +1,5 @@
 <div class="dashboard-container">
   <header>
-    <!-- Menu Button -->
     <button mat-icon-button (click)="toggleDrawer()" aria-label="Toggle Drawer" matTooltip="Toggle Menu" class="menu-button">
       <mat-icon>menu</mat-icon>
     </button>
@@ -12,27 +11,40 @@
 
   <mat-drawer-container class="example-container">
     <mat-drawer 
-      #drawer 
+      #mainDrawer 
+      mode="side" 
+      class="custom-drawer"
+      [opened]="true"
+      [ngClass]="{ 'drawer-expanded': isExpanded, 'drawer-partial': !isExpanded }"
+      [opened]="isExpanded"></mat-drawer>
+      
+    <!-- Partial Drawer (always 60px, expands on hover) -->
+     <mat-drawer 
+      #partialDrawer 
       mode="side" 
       class="custom-drawer"
       [ngClass]="{ 'drawer-expanded': isExpanded, 'drawer-partial': !isExpanded }"
       [opened]="true">
       <span class="drawer-item" mat-icon-button (click)="navigateToNotes()" aria-label="Notes">
-        <mat-icon  svgIcon="notes-icon"></mat-icon>
+        <mat-icon svgIcon="notes-icon"></mat-icon>
         <span class="drawer-label">Notes</span>
       </span>
-     
+
       <span class="drawer-item" mat-icon-button (click)="navigateToArchive()" aria-label="Archive">
-        <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
+        <mat-icon svgIcon="archive-icon"></mat-icon>
         <span class="drawer-label">Archive</span>
       </span>
-      
+
       <span class="drawer-item" mat-icon-button (click)="navigateToTrash()" aria-label="Trash">
-        <mat-icon svgIcon="trash-icon" aria-hidden="true" aria-label="trash icon" ></mat-icon>
+        <mat-icon svgIcon="trash-icon"></mat-icon>
         <span class="drawer-label">Trash</span>
       </span>
-    </mat-drawer>
-    <mat-drawer-content class="content-container">
+    
+
+  </mat-drawer>
+
+    <!-- Content Container -->
+    <mat-drawer-content class="content-container" [ngClass]="{'content-expanded': isExpanded}">
       <router-outlet></router-outlet>
     </mat-drawer-content>
   </mat-drawer-container>

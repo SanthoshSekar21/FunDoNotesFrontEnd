@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  position: relative;
 }
 
 /* Header Styles */
@@ -71,6 +72,8 @@ header {
   overflow-x: hidden;  
   overflow-y: hidden; 
   height: 100vh; 
+  background-color:  #fff; 
+  position: absolute;
 }
 
 .drawer-partial {
@@ -129,21 +132,43 @@ header {
 .content-container {
   flex-grow: 1;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
+  padding-bottom: 20px;
   overflow-y: auto;
-  height: 100vh;
+  height: calc(100vh - 60px - 20px);  /* Adjust for the header */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  transition: margin-left 0.3s ease;
+  transition: margin-left 0.3s ease; /* Smooth transition */
+  margin-left: 0;
 }
 
-.drawer-expanded ~ .content-container {
-  margin-left: 250px;
+.content-expanded {
+  margin-left: 250px;  /* Adjust this according to the expanded drawer width */
+}
+
+.drawer-partial ~ .content-container {
+  margin-left: 60px;  /* Adjust this according to the collapsed drawer width */
+}
+
+.custom-drawer {
+  transition: width 0.3s ease;
+  overflow-x: hidden;  
+  height: 100vh;
+  background-color: #fff;
+}
+
+.drawer-expanded {
+  width: 250px;  /* Expanded drawer width */
 }
 
 .drawer-partial {
-  width: 60px; 
-  transition: width 0.3s ease;
+  width: 60px;  /* Collapsed drawer width */
 }
+
+/* Adjust the content-container when the drawer is partial */
+.drawer-partial ~ .content-container {
+  margin-left: 60px; 
+}
+
 
 .drawer-partial:hover {
   width: 250px; 
@@ -160,4 +185,5 @@ header {
 
 .drawer-partial:hover ~ .content-container {
   margin-left: 250px; 
+
 }
