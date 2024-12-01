@@ -3,7 +3,7 @@ import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_ICON, MORE_ICON, DELETE_FOREVER_ICON, RESTORE_ICON, UNARCHIVE_ICON, TRASH_ICON } from 'src/assets/svg-icons';
+import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_ICON, MORE_ICON, DELETE_FOREVER_ICON, RESTORE_ICON, UNARCHIVE_ICON, TRASH_ICON, UNDO_ICON, REDO_ICON } from 'src/assets/svg-icons';
 
 @Component({
   selector: 'app-icon',
@@ -11,7 +11,7 @@ import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent {
-  @Input() noteDetails!: { _id: string; title: string; description: string;color:{code:string,name:string},isTrash:boolean,isArchive:boolean };
+  @Input() noteDetails: { _id?: string; title?: string; description?: string;color?:{code:string,name:string},isTrash?:boolean,isArchive?:boolean }={};
   @Output() iconOperation: EventEmitter<any> = new EventEmitter();
 
  colorArray: Array<any> = [
@@ -43,7 +43,8 @@ export class IconComponent {
     iconRegistry.addSvgIconLiteral('restore-icon', sanitizer.bypassSecurityTrustHtml(RESTORE_ICON));
     iconRegistry.addSvgIconLiteral('unarchive-icon', sanitizer.bypassSecurityTrustHtml(UNARCHIVE_ICON));
     iconRegistry.addSvgIconLiteral('trash-icon', sanitizer.bypassSecurityTrustHtml(TRASH_ICON));
-   
+    iconRegistry.addSvgIconLiteral('undo-icon',sanitizer.bypassSecurityTrustHtml(UNDO_ICON))
+    iconRegistry.addSvgIconLiteral('redo-icon',sanitizer.bypassSecurityTrustHtml(REDO_ICON)) 
   }
    toggleColorPalette(){
     this.showPalette=!this.showPalette;
@@ -53,6 +54,8 @@ export class IconComponent {
     
       this.selectedColor = color;
       console.log(this.selectedColor);
+      this.noteDetails.color = { code: this.selectedColor, name: color.name };
+      this.iconOperation.emit({ action: 'color-change', data: { color: this.selectedColor, noteId: this.noteDetails._id } });
       const headers = new HttpHeaders().set( 'Authorization',`Bearer ${localStorage.getItem('token') || ''}`);
       this.httpService.updateNoteApiCall(`/api/v1/notes/${this.noteDetails._id}`, { title: this.noteDetails.title,description: this.noteDetails.description, color:this.selectedColor},{ headers })
     .subscribe({
