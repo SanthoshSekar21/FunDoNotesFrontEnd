@@ -51,7 +51,7 @@ export class IconComponent {
    }
  
     selectColor(color:any): void {
-    
+      console.log(this.noteDetails)
       this.selectedColor = color;
       console.log(this.selectedColor);
       this.noteDetails.color = { code: this.selectedColor, name: color.name };

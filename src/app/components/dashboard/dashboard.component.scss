@@ -17,7 +17,6 @@ body {
   position: relative;
 }
 
-/* Header Styles */
 header {
   display: flex;
   justify-content: space-between;
@@ -140,7 +139,7 @@ header {
   border-radius: 0 60px  60px 0;
 }
 .drawer-item.active {
-  background-color: #fce062f1; 
+  background-color: #fff8b8; 
 }
 .drawer-partial .drawer-item{
   border-radius: 50%;

@@ -1,8 +1,9 @@
-::ng-deep .mat-dialog-container {
+.mat-dialog-container {
   border-radius: 8px !important;  
   overflow: hidden;
   border: 1px solid #e0e0e0;  
-  max-height: 80vh; }
+  max-height: 80vh;
+}
 
 .note-dialog {
   display: flex;
@@ -14,92 +15,92 @@
   overflow: hidden; 
   box-sizing: border-box;
   transition: box-shadow 0.3s ease-in-out;
-  max-height: 70vh;  
+  max-height: 70vh;
+}
 
-  &:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  }
+.note-dialog:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
 
-  .note-title {
-    margin-bottom: 12px;  
-    
-    .title-input {
-      width: 100%;
-      font-size: 1.3rem;  
-      font-weight: 600;
-      border: none;
-      outline: none;
-      background: none;
-      color: #212121;  
-      padding: 6px 0;  
-      box-sizing: border-box;
-  
-      &:focus {
-        border: none; 
-        outline: none;  
-      }
-    }
-  }
+.note-title {
+  margin-bottom: 12px;
+}
 
-  .note-content {
-    margin-bottom: 16px;     
-    
-    .description-input {
-      width: 100%;
-      min-height: 100px;  
-      border: none;
-      outline: none;
-      background: none;
-      color: #424242; 
-      padding: 6px 0; 
-      font-size: 0.95rem;  
-      line-height: 1.4;  
-      resize: none;
-      box-sizing: border-box;
+.note-title .title-input {
+  width: 100%;
+  font-size: 1.3rem;  
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background: none;
+  color: #212121;  
+  padding: 6px 0;  
+  box-sizing: border-box;
+}
 
-      &:focus {
-        border: none;
-        outline: none;
-      }
-    }
-  }
+.note-title .title-input:focus {
+  border: none; 
+  outline: none;  
+}
 
-  .note-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 12px; 
-    
-    .left-actions,
-    .right-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;  
-    }
+.note-content {
+  margin-bottom: 16px;
+}
 
-    button {
-      cursor: pointer;
-      border: none;
-      outline: none;
-      background: none;
-      transition: background-color 0.3s ease;
-      
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.05);  
-      }
-    }
+.note-content .description-input {
+  width: 100%;
+  min-height: 100px;  
+  border: none;
+  outline: none;
+  background: none;
+  color: #424242; 
+  padding: 6px 0; 
+  font-size: 0.95rem;  
+  line-height: 1.4;  
+  resize: none;
+  box-sizing: border-box;
+}
 
-    .mat-icon-button {
-      border-radius: 50%;  
-      padding: 6px;  
-    }
+.note-content .description-input:focus {
+  border: none;
+  outline: none;
+}
 
-    .mat-button, .mat-raised-button {
-      font-size: 13px;  
-      padding: 6px 12px; 
-      text-transform: none;  
-    }
-  }
+.note-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px; 
+}
+
+.note-actions .left-actions,
+.note-actions .right-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;  
+}
+
+.note-actions button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  transition: background-color 0.3s ease;
+}
+
+.note-actions button:hover {
+  background-color: rgba(0, 0, 0, 0.05);  
+}
+
+.note-actions .mat-icon-button {
+  border-radius: 50%;  
+  padding: 6px;  
+}
+
+.note-actions .mat-button, .note-actions .mat-raised-button {
+  font-size: 13px;  
+  padding: 6px 12px; 
+  text-transform: none;  
 }
 
 @media (max-width: 600px) {

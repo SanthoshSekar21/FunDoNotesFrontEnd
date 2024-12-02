@@ -1,5 +1,4 @@
-<div class="note-dialog">
-
+<div class="note-dialog" [ngStyle]="{'background-color':noteDetails.color|| '#ffffff'}">
     <div class="note-title">
       <input type="text" placeholder="Title" [(ngModel)]="noteDetails.title"class="title-input">
     </div>
@@ -8,14 +7,14 @@
     </div>
     <div class="note-actions">
       <div class="left-actions">
-        <button mat-icon-button aria-label="archive" matTooltip="archive" >
-            <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
-          </button>
-          <button mat-icon-button aria-label="trash" matTooltip="trash">
-            <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
-          </button>
+        <app-icon [noteDetails]="noteDetails" (iconOperation)="handleIconOperation($event)"></app-icon>
+        <button class="small-icon-button " mat-icon-button  aria-label="undo"  matTooltip="undo" (click)="$event.stopPropagation()">
+      <mat-icon svgIcon="undo-icon" aria-hidden="false" aria-label="undo icon"></mat-icon>
+     </button>
+    <button class="small-icon-button " mat-icon-button aria-label="redo"  matTooltip="redo" (click)="$event.stopPropagation()">  
+      <mat-icon svgIcon="redo-icon" aria-hidden="false" aria-label="redo icon"></mat-icon>
+    </button>
       </div>
-      
       <div class="right-actions">
         <button mat-button (click)="onClose()">Close</button>
       </div>
