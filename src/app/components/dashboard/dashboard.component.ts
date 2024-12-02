@@ -54,4 +54,8 @@ export class DashboardComponent {
     console.log(event.target.value)
     this.data.outgoingData(event.target.value);
   }
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
+  }
 }
