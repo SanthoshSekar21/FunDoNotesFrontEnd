@@ -51,7 +51,7 @@ export class NotesCotainerComponent {
     const { data, action } = $event;
     if (action === 'add' && data) {
       if (data.title && data.description) {
-        this.notesList.push(data);
+        this.fetchNotes();
       }
     } else if (action === 'archive' && data) {
       this.notesList = this.notesList.filter(note => note._id !== data._id);

@@ -1,31 +1,19 @@
 <div *ngIf="!isExpanded; else expandedNote" class="note-collapsed" (click)="addNoteToggle('toggle')">
     <span>Take a note...</span>
 </div>
-
 <ng-template #expandedNote>
     <div class="note-expanded" [ngStyle]="{'background-color': selectedColor}">
         <input type="text" placeholder="Title" class="title-input" [(ngModel)]="title" [ngStyle]="{'background-color': selectedColor}">
         <textarea placeholder="Take a note..." class="note-textarea" [(ngModel)]="description" [ngStyle]="{'background-color': selectedColor}"></textarea>
-        
-        <!-- Align the icon and button in the same line -->
         <div class="note-actions">
             <app-icon (iconOperation)="handleIconOperation($event)"></app-icon>
-            <button class="small-icon-button " 
-               mat-icon-button 
-               aria-label="undo" 
-              matTooltip="undo" 
-              (click)="$event.stopPropagation()">
+            <button class="small-icon-button "  mat-icon-button aria-label="undo"  matTooltip="undo"  (click)="$event.stopPropagation()">
              <mat-icon svgIcon="undo-icon" aria-hidden="false" aria-label="undo icon"></mat-icon>
             </button>
-           <button class="small-icon-button " 
-             mat-icon-button 
-             aria-label="redo" 
-             matTooltip="redo" 
-             (click)="$event.stopPropagation()">
+           <button class="small-icon-button "  mat-icon-button aria-label="redo"matTooltip="redo" (click)="$event.stopPropagation()">
              <mat-icon svgIcon="redo-icon" aria-hidden="false" aria-label="redo icon"></mat-icon>
            </button>
             <button class="close-btn" (click)="addNoteToggle('save')">Close</button>
         </div>
-        
     </div>
 </ng-template>
