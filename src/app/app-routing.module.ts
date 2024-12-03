@@ -6,17 +6,18 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotesCotainerComponent } from './components/notes-cotainer/notes-cotainer.component';
 import { ArchiveContainerComponent } from './components/archive-container/archive-container.component';
 import { TrashContainerComponent } from './components/trash-container/trash-container.component';
+import { AuthGuardService } from './service/authGuard/auth-guard.service';
 
 const routes: Routes = [
   {
     path:'',
-    component:LoginComponent
+    component:LoginComponent,
   },{
     path:'register',
     component:RegisterComponent
   },
   {
-    path:"dashboard", component:DashboardComponent,
+    path:"dashboard", component:DashboardComponent,canActivate:[AuthGuardService],
     children:[
       {path:"notes",component:NotesCotainerComponent},
       {path:"archive",component:ArchiveContainerComponent},
