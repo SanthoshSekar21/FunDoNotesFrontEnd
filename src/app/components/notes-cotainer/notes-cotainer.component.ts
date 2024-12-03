@@ -57,7 +57,8 @@ export class NotesCotainerComponent {
       this.notesList = this.notesList.filter(note => note._id !== data._id);
     }
      else if(action==='trash'&& data){
-      this.notesList=this.notesList.filter(note=>note._id!==data._id);
+      
+      this.notesList=this.notesList.filter(note=>note._id!==data);
      }
      else if(action==='color-change'&& data){
 
@@ -71,6 +72,12 @@ export class NotesCotainerComponent {
           }
           return note; 
         });
+      }
+      else if (action === 'update' && data) {
+        console.log('---------')
+        this.notesList = this.notesList.map(note =>
+          note._id === data._id ? { ...note, ...data } : note
+        );
       }
      }
   }

@@ -37,7 +37,7 @@ export class TrashContainerComponent {
       this.trashList = this.trashList.filter(note => note._id !== data._id);
   }
    else if(action==='trash' && data){
-    this.trashList=this.trashList.filter(note=>note._id!==data._id)
+    this.trashList=this.trashList.filter(note=>note._id!==data)
    }
    else if(action==='delete'&& data){
     this.trashList=this.trashList.filter(note=>note._id!==data._id );

@@ -13,7 +13,6 @@ import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_
 export class IconComponent {
   @Input() noteDetails: { _id?: string; title?: string; description?: string;color?:{code:string,name:string},isTrash?:boolean,isArchive?:boolean }={};
   @Output() iconOperation: EventEmitter<any> = new EventEmitter();
-
  colorArray: Array<any> = [
   { code: '#ffffff', name: 'White' },
   { code: '#faafa8', name: 'PalePink' },
@@ -75,7 +74,7 @@ export class IconComponent {
     this.httpService.archiveNoteApiCall(`/api/v1/notes/${this.noteDetails._id}/archive`, { headers: header }).subscribe({
       next: (res: any) => {
         console.log('Note archived successfully');
-        this.iconOperation.emit({ action: 'archive', data: this.noteDetails });
+        this.iconOperation.emit({ action: 'archive', data: res.data });
       },
       error: (err: any) => {
         console.error('Error archiving note:', err);
@@ -88,7 +87,7 @@ export class IconComponent {
     this.httpService.archiveNoteApiCall(`/api/v1/notes/${this.noteDetails._id}/trash`, { headers: header }).subscribe({
       next: (res: any) => {
         console.log('Note trashed successfully');
-        this.iconOperation.emit({ action: 'trash', data: this.noteDetails });
+        this.iconOperation.emit({ action: 'trash', data: this.noteDetails._id});
       },
       error: (err: any) => {
         console.error('Error trashing note:', err);
