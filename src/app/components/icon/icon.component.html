@@ -1,83 +1,54 @@
 <div class="buttons">
-     <button *ngIf="!noteDetails.isTrash" class="small-icon-button " 
-       mat-icon-button 
-       aria-label="reminder button" 
-       matTooltip="Reminder" 
-       (click)="$event.stopPropagation()">
-     <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
-   </button>
-    <button  *ngIf="!noteDetails.isTrash"  class="small-icon-button " 
-       mat-icon-button 
-       aria-label="collaborator button" 
-       matTooltip="Collaborator" 
-       (click)="$event.stopPropagation()">
-       <mat-icon svgIcon="collabrator-icon" aria-hidden="false" aria-label="collaborator icon"></mat-icon>
-   </button>
-    <button   *ngIf="!noteDetails.isTrash" class="small-icon-button " 
-       mat-icon-button 
-       aria-label="color button" 
-       matTooltip="Background Color Options" 
-       (click)="toggleColorPalette(); $event.stopPropagation()">
-     <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
-   </button>
-    <button   *ngIf="!noteDetails.isTrash" class="small-icon-button " 
-       mat-icon-button 
-       aria-label="img button" 
-       matTooltip="Add Image" 
-       (click)="$event.stopPropagation()">
-     <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
-   </button>
-   <button  *ngIf="!noteDetails.isTrash && !noteDetails.isArchive"  class="small-icon-button " 
-       mat-icon-button 
-       aria-label="archive" 
-       matTooltip="Archive" 
-       (click)=" archiveNoteOperation(); $event.stopPropagation() ">
-     <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="archive icon"></mat-icon>
-   </button>
-   <button  *ngIf="!noteDetails.isTrash && noteDetails.isArchive"  class="small-icon-button " 
-       mat-icon-button 
-       aria-label="unarchive" 
-       matTooltip="unarchive" 
-       (click)=" archiveNoteOperation(); $event.stopPropagation() ">
-     <mat-icon svgIcon="unarchive-icon" aria-hidden="false" aria-label="unarchive icon"></mat-icon>
-   </button>
-    <button   *ngIf="!noteDetails.isTrash" class="small-icon-button " 
-       mat-icon-button 
-       aria-label="trash" 
-       matTooltip="Trash" 
-       (click)=" trashNoteOperation(); $event.stopPropagation()">
-     <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
-   </button>
-    <button   *ngIf="!noteDetails.isTrash" class="small-icon-button " 
-       mat-icon-button 
-       [matMenuTriggerFor]="menu" 
-       aria-label="more options" 
-       (click)="$event.stopPropagation()">
-       <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="more icon"></mat-icon>
-   <mat-menu #menu="matMenu">
-     <button mat-menu-item>Item 1</button>
-     <button mat-menu-item>Item 2</button>
-   </mat-menu> </button>
-   <button   *ngIf="noteDetails.isTrash" class="small-icon-button " 
-      mat-icon-button 
-      aria-label="restore" 
-      matTooltip="Restore" 
-     (click)=" trashNoteOperation(); $event.stopPropagation()">
- <mat-icon svgIcon="restore-icon" aria-hidden="false" aria-label="restore icon"></mat-icon>
+  <button *ngIf="!noteDetails.isTrash" class="small-icon-button"  mat-icon-button aria-label="reminder button" matTooltip="Reminder" (click)="$event.stopPropagation()">
+  <mat-icon svgIcon="reminder-icon" aria-hidden="false" aria-label="reminder icon"></mat-icon>
 </button>
-<button   *ngIf="noteDetails.isTrash" class="small-icon-button " 
-mat-icon-button 
-aria-label="delete" 
-matTooltip="Delete" 
-(click)="  deleteNoteOperation(); $event.stopPropagation()">
-<mat-icon svgIcon="delete-forever-icon" aria-hidden="false" aria-label="delete icon"></mat-icon>
-</button>
-   </div>
-   <div *ngIf="showPalette" class="color-palette-popup">
-    <div *ngFor="let color of colorArray" 
-     [style.background]="color.code" 
-     class="color-box" 
-     (click)="selectColor(color.code); $event.stopPropagation()">
-</div>
+  <button *ngIf="!noteDetails.isTrash"  mat-icon-button aria-label="collabrator button" matTooltip="Collabrator" (click)="$event.stopPropagation()" class="small-icon-button">
+      <mat-icon svgIcon="collabrator-icon" aria-hidden="false" aria-label="collabrator icon"></mat-icon>
+  </button>
+  <button  *ngIf="!noteDetails.isTrash" mat-icon-button [matMenuTriggerFor]="color_menu" aria-label="color button" matTooltip="Background Color Options"  (click)="$event.stopPropagation()"class="small-icon-button">
+      <mat-icon svgIcon="color-palatte-icon" aria-hidden="false" aria-label="color button icon"></mat-icon>
+  </button>
+  <button *ngIf="!noteDetails.isTrash"  mat-icon-button aria-label="img button" matTooltip="Add Image" (click)="$event.stopPropagation()" class="small-icon-button">
+      <mat-icon svgIcon="img-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
+  </button>
+  <button  *ngIf="!noteDetails.isTrash && !noteDetails.isArchive" mat-icon-button aria-label="archive button" matTooltip="Archive" class="small-icon-button" (click)=" archiveNoteOperation(); $event.stopPropagation()">
+      <mat-icon svgIcon="archive-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
+  </button>
+  <button  *ngIf="!noteDetails.isTrash && noteDetails.isArchive"  class="small-icon-button " mat-icon-button aria-label="unarchive" matTooltip="unarchive" (click)=" archiveNoteOperation(); $event.stopPropagation() ">
+    <mat-icon svgIcon="unarchive-icon" aria-hidden="false" aria-label="unarchive icon"></mat-icon>
+  </button>
+  <button *ngIf="!noteDetails.isTrash"  mat-icon-button aria-label="trash button" matTooltip="Trash" class="small-icon-button" (click)="trashNoteOperation(); $event.stopPropagation()">
+    <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
+  </button>
+  <button   *ngIf="noteDetails.isTrash" class="small-icon-button " mat-icon-button aria-label="restore" matTooltip="Restore"(click)=" trashNoteOperation(); $event.stopPropagation()">
+    <mat-icon svgIcon="restore-icon" aria-hidden="false" aria-label="restore icon"></mat-icon>
+  </button>
+  <button   *ngIf="noteDetails.isTrash" class="small-icon-button " mat-icon-button aria-label="delete" matTooltip="Delete" (click)="  deleteNoteOperation(); $event.stopPropagation()">
+    <mat-icon svgIcon="delete-forever-icon" aria-hidden="false" aria-label="delete icon"></mat-icon>
+  </button>
+  <button  *ngIf="!noteDetails.isTrash" mat-icon-button [matMenuTriggerFor]="more_menu" aria-label="Example icon-button with a menu" (click)="$event.stopPropagation()" class="small-icon-button" id="menu"> 
+      <mat-icon svgIcon="more-icon" aria-hidden="false" aria-label="add image icon"></mat-icon>
+    </button>
+    <mat-menu #more_menu="matMenu" xPosition="after">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voice mail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
 
-  </div>
+    <mat-menu #color_menu="matMenu" yPosition="below" xPosition="after" class="custommenu">
+      <div class="colormenu">
+        <div *ngFor="let color of colorArray">
+          <button class="colorbutton" [style.background-color]="color.code" (click)="handleNoteColor(color.code)"></button>
+        </div>
+      </div>
+    </mat-menu>
+</div>

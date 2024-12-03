@@ -50,7 +50,7 @@ export class IconComponent {
     this.showPalette=!this.showPalette;
    }
  
-    selectColor(color:any): void {
+    handleNoteColor(color:any): void {
       console.log(this.noteDetails)
       this.selectedColor = color;
       console.log(this.selectedColor);

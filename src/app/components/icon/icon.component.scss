@@ -1,91 +1,81 @@
-/* Buttons Container */
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; 
-  flex-wrap: nowrap; 
-  gap: 16px;
-  padding: 6px; 
-  margin: 6px; 
-  height: 30px; 
-  width: 100%; 
-  overflow: hidden; 
-  box-sizing: border-box; 
-  z-index: 10px;
-  position: relative;
-  overflow: visible;
-}
-
-/* Button Style */
 .small-icon-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 21px; 
-  height: 45px; 
-  padding: 0px; 
-  border-radius: 50%; 
-  gap: 4px;
-  background-color: transparent; 
-  cursor: pointer; 
-  box-sizing: border-box;
-  overflow: hidden; 
-  transition: background-color 0.3s ease; 
-  margin: 0; 
+  width: 32px;
+  height: 32px;
 }
 
-/* Icon Style */
-.small-icon-button mat-icon {
-  font-size: 16px; 
-  line-height: 2; 
-  color: inherit; 
-}
-
-/* Ensure button is on top */
-.small-icon-button {
-  position: relative;
-  z-index: 10;
-}
-/* Color Palette Popup */
-/* Adjust position of the color palette */
-.color-palette-popup{
+.small-icon-button mat-icon{
   position: absolute;
-  top: 100%;  
-  left: 0;
-  background: white;
-  box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
-  padding: 10px;
-  display: flex;
-  flex-wrap: nowrap;
-  z-index: 500; 
-  width: 100%;  
-  gap: 4px;
-  overflow: visible; 
-  display: flex;
-   
+  transform: scale(.8);
+
+
 }
 
-
-/* Ensure parent container doesn't hide the color palette */
-.note-card {
-  position: relative;
-  overflow: visible; /* Allow child elements like the popup to overflow */
+.buttons{
+  width: 230px;
+  display: flex;
+  justify-content: space-around;
 }
 
-/* Optional: Adjust for the color box to scale properly */
-.color-box {
-  width: 100%;
-  height: 24px;
-  margin:0;
+.colorbutton{
+  width: 30px;
+  height: 30px;
+  border: 1px solid white;
+  border-radius: 50%;
+
+}
+
+.colorbutton:hover{
+  border: 1px solid black;
+}
+
+.colormenu{
+  display: flex;
+}
+
+::ng-deep .custommenu{
+  display: flex;
+  justify-content: space-around;
+  width: 378px;
+  position: absolute;
+  left: -100px;
+  padding:0px;
+}
+
+::ng-deep {  
+  .mat-mdc-menu-panel {  
+    max-width: unset !important;  
+  }  
+}
+::ng-deep .custommenu {
+  display: flex;
+  flex-wrap:nowrap; 
+  padding: 8px;
+  gap: 0px; 
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px; 
+}
+
+::ng-deep .colormenu {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 0px;
+}
+
+::ng-deep .colorbutton {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
+  border: none;
   transition: transform 0.2s, box-shadow 0.2s;
-  gap: 4px;
 }
 
-.color-box:hover {
-  transform: scale(1.2);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+::ng-deep .colorbutton:hover {
+  transform: scale(1.1); /* Slight scaling effect */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Shadow for hover effect */
 }
