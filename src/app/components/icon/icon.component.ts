@@ -50,11 +50,13 @@ export class IconComponent {
    }
  
     handleNoteColor(color:any): void {
-      console.log(this.noteDetails)
       this.selectedColor = color;
-      console.log(this.selectedColor);
+      
+      this.iconOperation.emit({ action: 'color-change', data: { color: this.selectedColor } });
+      if (!this.noteDetails || !this.noteDetails._id) {
+        return;
+      }
       this.noteDetails.color = { code: this.selectedColor, name: color.name };
-      this.iconOperation.emit({ action: 'color-change', data: { color: this.selectedColor, noteId: this.noteDetails._id } });
       const headers = new HttpHeaders().set( 'Authorization',`Bearer ${localStorage.getItem('token') || ''}`);
       this.httpService.updateNoteApiCall(`/api/v1/notes/${this.noteDetails._id}`, { title: this.noteDetails.title,description: this.noteDetails.description, color:this.selectedColor},{ headers })
     .subscribe({
@@ -70,6 +72,9 @@ export class IconComponent {
   
   
   archiveNoteOperation() {
+    if (!this.noteDetails || !this.noteDetails._id) {
+      return;
+    }
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.httpService.archiveNoteApiCall(`/api/v1/notes/${this.noteDetails._id}/archive`, { headers: header }).subscribe({
       next: (res: any) => {
@@ -83,6 +88,9 @@ export class IconComponent {
   }
 
   trashNoteOperation() {
+    if (!this.noteDetails || !this.noteDetails._id) {
+        return;
+      }
     const header = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.httpService.archiveNoteApiCall(`/api/v1/notes/${this.noteDetails._id}/trash`, { headers: header }).subscribe({
       next: (res: any) => {

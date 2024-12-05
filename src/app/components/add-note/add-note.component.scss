@@ -1,14 +1,17 @@
 .note-collapsed, .note-expanded {
+    justify-content: space-evenly;
+    align-items: center;
     display: flex;
     width: 400px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     padding: 10px;
-    margin-top: 20px; 
-    position: relative;  
+    margin-top: 20px;
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
+    gap: 16em;
 }
 
 .note-collapsed {
@@ -16,7 +19,16 @@
     border: 1px solid #ccc;
     cursor: pointer;
 }
-
+span.icons {
+    color: #5f6368;
+    margin-left: 8px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 4em;
+    gap: 10px;
+    align-items: center;
+  }
 .note-expanded {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -30,6 +42,7 @@
 .title-input {
     border: none;
     outline: none;
+    margin-left: -9em;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 8px;

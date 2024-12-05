@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import { BRUSH_ICON, IMG_ICON, TICK_ICON } from 'src/assets/svg-icons';
 
 @Component({
   selector: 'app-add-note',
@@ -17,8 +20,13 @@ export class AddNoteComponent {
   selectedColor: any;
 
   constructor(
-    public httpService: HttpService
-  ) {}
+     private httpService: HttpService, public iconRegistry:MatIconRegistry,
+    private sanitizer:DomSanitizer,
+  ) {
+    iconRegistry.addSvgIconLiteral('bursh-icon', sanitizer.bypassSecurityTrustHtml(BRUSH_ICON));
+    iconRegistry.addSvgIconLiteral('tick-icon',sanitizer.bypassSecurityTrustHtml(TICK_ICON));
+    iconRegistry.addSvgIconLiteral('img-icon',sanitizer.bypassSecurityTrustHtml(IMG_ICON));
+  }
 
   addNoteToggle(action: string) {
     if (action === 'toggle') {
@@ -26,7 +34,7 @@ export class AddNoteComponent {
     } else if (action === 'save') {
       if (this.title || this.description) {
         const headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token') || ''}`);
-        this.httpService.createNoteApiCall('/api/v1/notes', { title: this.title, description: this.description }, { headers }).subscribe({
+        this.httpService.createNoteApiCall('/api/v1/notes', { title: this.title, description: this.description,color:this.selectedColor }, { headers }).subscribe({
           next: (res:any) => {
             console.log(res);
             this.updateList.emit({
@@ -49,7 +57,5 @@ export class AddNoteComponent {
     const { action, data } = event;  
     this.updateList.emit({ data, action }); 
     this.selectedColor = data.color;
-    console.log(this.selectedColor);
-    this.noteDetails.color = data.color; 
   }
 }

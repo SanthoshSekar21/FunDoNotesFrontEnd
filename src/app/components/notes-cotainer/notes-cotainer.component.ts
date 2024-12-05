@@ -50,8 +50,9 @@ export class NotesCotainerComponent {
   handleUpdateList($event: any) {
     const { data, action } = $event;
     if (action === 'add' && data) {
+
       if (data.title && data.description) {
-        this.fetchNotes();
+        this.notesList = [...this.notesList, data]; 
       }
     } else if (action === 'archive' && data) {
       this.notesList = this.notesList.filter(note => note._id !== data._id);
@@ -74,7 +75,6 @@ export class NotesCotainerComponent {
         });
       }
       else if (action === 'update' && data) {
-        console.log('---------')
         this.notesList = this.notesList.map(note =>
           note._id === data._id ? { ...note, ...data } : note
         );

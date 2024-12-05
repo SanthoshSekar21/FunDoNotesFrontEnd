@@ -1,6 +1,12 @@
 <div *ngIf="!isExpanded; else expandedNote" class="note-collapsed" (click)="addNoteToggle('toggle')">
     <span>Take a note...</span>
+      <span class="icons">
+        <mat-icon svgIcon="tick-icon"></mat-icon>
+        <mat-icon svgIcon="bursh-icon"></mat-icon>
+        <mat-icon svgIcon="img-icon"></mat-icon>
+      </span>
 </div>
+
 <ng-template #expandedNote>
     <div class="note-expanded" [ngStyle]="{'background-color': selectedColor}">
         <input type="text" placeholder="Title" class="title-input" [(ngModel)]="title" [ngStyle]="{'background-color': selectedColor}">
@@ -15,5 +21,6 @@
            </button>
             <button class="close-btn" (click)="addNoteToggle('save')">Close</button>
         </div>
+        
     </div>
 </ng-template>
