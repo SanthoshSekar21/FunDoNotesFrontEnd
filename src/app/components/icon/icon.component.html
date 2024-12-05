@@ -17,9 +17,6 @@
   <button  *ngIf="!noteDetails.isTrash && noteDetails.isArchive"  class="small-icon-button " mat-icon-button aria-label="unarchive" matTooltip="unarchive" (click)=" archiveNoteOperation(); $event.stopPropagation() ">
     <mat-icon svgIcon="unarchive-icon" aria-hidden="false" aria-label="unarchive icon"></mat-icon>
   </button>
-  <button *ngIf="!noteDetails.isTrash"  mat-icon-button aria-label="trash button" matTooltip="Trash" class="small-icon-button" (click)="trashNoteOperation(); $event.stopPropagation()">
-    <mat-icon svgIcon="trash-icon" aria-hidden="false" aria-label="trash icon"></mat-icon>
-  </button>
   <button   *ngIf="noteDetails.isTrash" class="small-icon-button " mat-icon-button aria-label="restore" matTooltip="Restore"(click)=" trashNoteOperation(); $event.stopPropagation()">
     <mat-icon svgIcon="restore-icon" aria-hidden="false" aria-label="restore icon"></mat-icon>
   </button>
@@ -31,16 +28,19 @@
     </button>
     <mat-menu #more_menu="matMenu" xPosition="after">
       <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Redial</span>
+        <span (click)="trashNoteOperation(); $event.stopPropagation()" >Delete note</span>
       </button>
-      <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voice mail</span>
+      <button mat-menu-item >
+        <span>Add label</span>
       </button>
       <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Disable alerts</span>
+        <span>Add drawing</span>
+      </button>
+      <button mat-menu-item>
+        <span>Make as copy</span>
+      </button>
+      <button mat-menu-item>
+        <span>version history</span>
       </button>
     </mat-menu>
 
