@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { DataService } from 'src/app/service/dataservices/data.service';
 import { ARCHIVE_ICON, LIST_VIEW_ICON, NOTE_ICON, REFRESH_ICON, SETTING_ICON, TRASH_ICON } from 'src/assets/svg-icons';
 
@@ -14,7 +14,7 @@ export class DashboardComponent {
   isHalfOpen = true; 
   isExpanded = false; 
   selectedItem: string = 'notes';
- 
+  isDrawerOpen = false;
   constructor(
     public iconRegistry:MatIconRegistry,
     public sanitizer:DomSanitizer,
@@ -27,29 +27,34 @@ export class DashboardComponent {
     iconRegistry.addSvgIconLiteral('setting-icon',sanitizer.bypassSecurityTrustHtml(SETTING_ICON))
     iconRegistry.addSvgIconLiteral('list-view-icon',sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON))
   }
+   
+  ngOnInit(): void {
+    const initialRoute = this.router.url.split('/').pop(); 
+    this.selectedItem = initialRoute || 'notes';
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const route = this.router.url.split('/').pop(); 
+        this.selectedItem = route || 'notes';
+      }
+    });
+  }
 
   toggleDrawer() {
-  this.isExpanded=!this.isExpanded;
+    this.isDrawerOpen = !this.isDrawerOpen;
   }
+
+  hoverDrawer(isHover: boolean): void {
+    this.isDrawerOpen = isHover;
+  }
+
 
   stopPropagation(event: Event) {
     event.stopPropagation();
   }
-
-  navigateToArchive() {
-    this.selectedItem = 'archive';
-    this.router.navigate(['dashboard/archive']);
+  navigateTo(route:string){
+    this.router.navigate(['/dashboard', route])
   }
 
-  navigateToTrash() {
-    this.selectedItem = 'trash';
-    this.router.navigate(['dashboard/trash']);
-  }
-
-  navigateToNotes() {
-    this.selectedItem = 'notes';
-    this.router.navigate(['dashboard/notes']);
-  }
   search(event: any) {
     console.log(event.target.value)
     this.data.outgoingData(event.target.value);
