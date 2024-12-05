@@ -28,6 +28,7 @@ import { ArchiveContainerComponent } from './components/archive-container/archiv
 import { UpdateNoteComponent } from './components/update-note/update-note.component';
 import { IconComponent } from './components/icon/icon.component';
 import { FilterPipe } from './pipe/filter.pipe';
+import { EditLabelComponent } from './components/edit-label/edit-label.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { FilterPipe } from './pipe/filter.pipe';
     ArchiveContainerComponent,
     UpdateNoteComponent,
     IconComponent,
-    FilterPipe
+    FilterPipe,
+    EditLabelComponent
   ],
   imports: [
     BrowserModule,
