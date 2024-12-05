@@ -22,12 +22,14 @@ export class NotesCotainerComponent {
   public notesList: { _id: string; title: string; description: string;color:string; isTrash:boolean; isArchive:boolean}[] = [];
   selectedColor!: string;
   filterNote: any;
+  isLoading = true;  
 
   constructor(private httpService: HttpService, private data: DataService) {}
 
   ngOnInit() {
     this.notesList = [];
     this.fetchNotes();
+
     this.data.incomingData.subscribe((response) => {
       console.log("Search in process", response);
       this.filterNote = response;
@@ -39,6 +41,7 @@ export class NotesCotainerComponent {
     this.httpService.getAllNotesApiCall('/api/v1/notes/', { headers: header }).subscribe({
       next: (res: any) => {
         this.notesList = res.data.filter((note: any) => note.isArchive === false && note.isTrash===false);
+        this.isLoading = false; 
       },
       error: (err: any) => {
         console.error('Error fetching notes:', err);

@@ -1,8 +1,20 @@
-<app-add-note class="addnote" (updateList)="handleUpdateList($event)"></app-add-note>
-<div class="notes-container">
-  <div *ngFor="let note of notesList  | filter : filterNote ">
-    <app-note-card 
-      [noteDetails]="note" 
-      (updateList)="handleUpdateList($event)"></app-note-card>  
+<div *ngIf="isLoading" class="loading-container">
+  <div class="loading-spinner">
+    <!-- You can use a CSS spinner or a library like Angular Material Spinner -->
+    <mat-spinner></mat-spinner> <!-- If you are using Angular Material -->
+  </div>
+  <p>Loading notes...</p>
+</div>
+
+<div *ngIf="!isLoading">
+  <!-- Your notes container will be shown once the data is loaded -->
+  <app-add-note class="addnote" (updateList)="handleUpdateList($event)"></app-add-note>
+  <div class="notes-container">
+    <div *ngFor="let note of notesList | filter: filterNote">
+      <app-note-card
+        [noteDetails]="note"
+        (updateList)="handleUpdateList($event)"
+      ></app-note-card>
+    </div>
   </div>
 </div>

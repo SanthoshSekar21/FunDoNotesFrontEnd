@@ -8,6 +8,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -57,7 +59,8 @@ import { FilterPipe } from './pipe/filter.pipe';
     MatSidenavModule,
     MatDialogModule,
     MatMenuModule,
-   MatTooltipModule
+   MatTooltipModule,
+   MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
