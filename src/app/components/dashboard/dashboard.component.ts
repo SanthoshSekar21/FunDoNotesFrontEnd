@@ -3,7 +3,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { DataService } from 'src/app/service/dataservices/data.service';
-import { ARCHIVE_ICON, LIST_VIEW_ICON, NOTE_ICON, REFRESH_ICON, SETTING_ICON, TRASH_ICON } from 'src/assets/svg-icons';
+import { ARCHIVE_ICON, EDIT_ICON, LIST_VIEW_ICON, NOTE_ICON, REFRESH_ICON, REMINDER_ICON, SETTING_ICON, TRASH_ICON } from 'src/assets/svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,11 +21,13 @@ export class DashboardComponent {
     private router: Router,
     private data: DataService
   ) {
+    iconRegistry.addSvgIconLiteral('remainder-icon',sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
     iconRegistry.addSvgIconLiteral('archive-icon', sanitizer.bypassSecurityTrustHtml(ARCHIVE_ICON));
     iconRegistry.addSvgIconLiteral('trash-icon', sanitizer.bypassSecurityTrustHtml(TRASH_ICON));
     iconRegistry.addSvgIconLiteral('notes-icon', sanitizer.bypassSecurityTrustHtml(NOTE_ICON));
-    iconRegistry.addSvgIconLiteral('setting-icon',sanitizer.bypassSecurityTrustHtml(SETTING_ICON))
-    iconRegistry.addSvgIconLiteral('list-view-icon',sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON))
+    iconRegistry.addSvgIconLiteral('setting-icon',sanitizer.bypassSecurityTrustHtml(SETTING_ICON));
+    iconRegistry.addSvgIconLiteral('list-view-icon',sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
+    iconRegistry.addSvgIconLiteral('edit-icon',sanitizer.bypassSecurityTrustHtml(EDIT_ICON))
   }
    
   ngOnInit(): void {

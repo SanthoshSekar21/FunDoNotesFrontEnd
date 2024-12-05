@@ -38,6 +38,14 @@
         <mat-icon svgIcon="notes-icon"></mat-icon>
         <span class="drawer-label">Notes</span>
       </div>
+      <div class="drawer-item"  role="button"  [ngClass]="{ 'active': selectedItem === 'remainder' }"  aria-label="Remainder">
+        <mat-icon svgIcon="remainder-icon"></mat-icon>
+        <span class="drawer-label">Remainder</span>
+      </div>
+      <div class="drawer-item"  role="button" aria-label="Notes">
+        <mat-icon svgIcon="edit-icon"></mat-icon>
+        <span class="drawer-label">EditLabel</span>
+      </div>
       <div class="drawer-item" (click)="navigateTo('archive')"[ngClass]="{ 'active': selectedItem === 'archive' }" role="button" aria-label="Archive">
         <mat-icon svgIcon="archive-icon"></mat-icon>
         <span class="drawer-label">Archive</span>
