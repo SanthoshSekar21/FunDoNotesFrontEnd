@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { DataService } from 'src/app/service/dataservices/data.service';
 import { ARCHIVE_ICON, EDIT_ICON, LIST_VIEW_ICON, NOTE_ICON, REFRESH_ICON, REMINDER_ICON, SETTING_ICON, TRASH_ICON } from 'src/assets/svg-icons';
+import { EditLabelComponent } from '../edit-label/edit-label.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +13,7 @@ import { ARCHIVE_ICON, EDIT_ICON, LIST_VIEW_ICON, NOTE_ICON, REFRESH_ICON, REMIN
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  isHalfOpen = true; 
+  labels: string[] = [];
   isExpanded = false; 
   selectedItem: string = 'notes';
   isDrawerOpen = false;
@@ -19,7 +21,7 @@ export class DashboardComponent {
     public iconRegistry:MatIconRegistry,
     public sanitizer:DomSanitizer,
     private router: Router,
-    private data: DataService
+    private data: DataService,private dialog: MatDialog
   ) {
     iconRegistry.addSvgIconLiteral('remainder-icon',sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
     iconRegistry.addSvgIconLiteral('archive-icon', sanitizer.bypassSecurityTrustHtml(ARCHIVE_ICON));
@@ -27,7 +29,7 @@ export class DashboardComponent {
     iconRegistry.addSvgIconLiteral('notes-icon', sanitizer.bypassSecurityTrustHtml(NOTE_ICON));
     iconRegistry.addSvgIconLiteral('setting-icon',sanitizer.bypassSecurityTrustHtml(SETTING_ICON));
     iconRegistry.addSvgIconLiteral('list-view-icon',sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
-    iconRegistry.addSvgIconLiteral('edit-icon',sanitizer.bypassSecurityTrustHtml(EDIT_ICON))
+    iconRegistry.addSvgIconLiteral('edit-icon',sanitizer.bypassSecurityTrustHtml(EDIT_ICON));
   }
    
   ngOnInit(): void {
@@ -65,4 +67,13 @@ export class DashboardComponent {
     localStorage.removeItem('token');
     this.router.navigate(['']);
   }
+  openEditLabelDialog() {
+    const dialogRef = this.dialog.open(EditLabelComponent, {
+      width: '400px',
+      data: { labels: this.labels }
+    });
 }
+
+}
+
+

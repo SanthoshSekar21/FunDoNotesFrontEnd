@@ -1,0 +1,21 @@
+.new-label,
+.label-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.new-label-input,
+.existing-label-input {
+  flex: 1;
+  margin: 0 8px;
+}
+
+button[mat-icon-button] {
+  color: #5f6368; /* Neutral Gray */
+  transition: color 0.3s ease;
+}
+
+button[mat-icon-button]:hover {
+  color: #1a73e8; /* Google Blue */
+}

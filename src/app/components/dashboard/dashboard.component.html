@@ -42,10 +42,15 @@
         <mat-icon svgIcon="remainder-icon"></mat-icon>
         <span class="drawer-label">Remainder</span>
       </div>
-      <div class="drawer-item"  role="button" aria-label="Notes">
+      <div class="drawer-item" (click)="openEditLabelDialog()" role="button" aria-label="Notes">
         <mat-icon svgIcon="edit-icon"></mat-icon>
         <span class="drawer-label">EditLabel</span>
       </div>
+      <div *ngFor="let label of labels" class="drawer-item" role="button">
+        <mat-icon>label_outline</mat-icon>
+        <span class="drawer-label">{{ label }}</span>
+      </div>
+      
       <div class="drawer-item" (click)="navigateTo('archive')"[ngClass]="{ 'active': selectedItem === 'archive' }" role="button" aria-label="Archive">
         <mat-icon svgIcon="archive-icon"></mat-icon>
         <span class="drawer-label">Archive</span>
