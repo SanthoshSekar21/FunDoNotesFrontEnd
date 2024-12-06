@@ -1,5 +1,5 @@
 <div class="archive-container">
-    <div *ngFor="let note of archiveList" class="note-card">
+    <div *ngFor="let note of archiveList|filter: filterNote" class="note-card">
       <app-note-card [noteDetails]="note"  (updateList)=" handleArchiveList($event)"></app-note-card>
     </div>
   </div>

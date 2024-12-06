@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
+import { DataService } from 'src/app/service/dataservices/data.service';
 
 @Component({
   selector: 'app-archive-container',
@@ -8,14 +9,10 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./archive-container.component.scss']
 })
 export class ArchiveContainerComponent implements OnInit {
-  @Input() noteDetails: { _id: string; title: string; description: string } = {
-    _id: '',
-    title: '',
-    description: ''
-  };
+  @Input() noteDetails: { _id: string; title: string; description: string } = { _id: '', title: '',description: ''};
   archiveList: any[] = []; 
-  
-  constructor(private httpService: HttpService) {}
+  filterNote:any;
+  constructor(private httpService: HttpService,private data:DataService) {}
 
   ngOnInit() {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`);
@@ -30,6 +27,9 @@ export class ArchiveContainerComponent implements OnInit {
         console.error('Error fetching archived notes:', err);
       }
     });
+    this.data.incomingData.subscribe((response:string)=>{
+      this.filterNote = response.toLowerCase(); 
+    })
   }
   handleArchiveList(event:any){
     const {data,action}=event;
