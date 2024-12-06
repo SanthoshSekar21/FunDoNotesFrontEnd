@@ -1,5 +1,5 @@
 <div class="trash-container">
-    <div *ngFor="let note of trashList" class="note-card">
+    <div *ngFor="let note of trashList | filter:filterNote" class="note-card">
       <app-note-card [noteDetails]="note"  (updateList)=" handleTrashList($event)"></app-note-card>
     </div>
   </div>

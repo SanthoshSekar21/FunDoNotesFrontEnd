@@ -1,5 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { DataService } from 'src/app/service/dataservices/data.service';
 import { HttpService } from 'src/app/service/http-service/http.service';
 
 @Component({
@@ -14,11 +15,16 @@ export class TrashContainerComponent {
     description: ''
   };
   trashList: any[] = []; 
+  filterNote:any
   
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService,private data:DataService) {}
 
   ngOnInit() {
     this.fetchTrashList();
+    this.data.incomingData.subscribe((response:string)=>{
+      this.filterNote=response.toLowerCase();
+    })
+
   }
   fetchTrashList() {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`); 
