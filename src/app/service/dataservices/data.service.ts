@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
 
   constructor() { }
-  private messageSource = new BehaviorSubject([]);
+  private messageSource = new BehaviorSubject<string>(''); 
   incomingData = this.messageSource.asObservable();
-  outgoingData(message: any){
-    console.log(message);
-    this.messageSource.next(message);
+
+  outgoingData(message: string) {
+    this.messageSource.next(message); 
   }
 }
-

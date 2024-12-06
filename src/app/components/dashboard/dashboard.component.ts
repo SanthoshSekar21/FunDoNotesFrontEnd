@@ -60,7 +60,6 @@ export class DashboardComponent {
   }
 
   search(event: any) {
-    console.log(event.target.value)
     this.data.outgoingData(event.target.value);
   }
   logout(): void {

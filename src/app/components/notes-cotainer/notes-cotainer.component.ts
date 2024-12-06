@@ -30,10 +30,10 @@ export class NotesCotainerComponent {
     this.notesList = [];
     this.fetchNotes();
 
-    this.data.incomingData.subscribe((response) => {
-      console.log("Search in process", response);
-      this.filterNote = response;
-    })
+    this.data.incomingData.subscribe((response: string) => {
+      console.log('Search in process:', response);
+      this.filterNote = response.toLowerCase(); 
+    });
   }
 
   fetchNotes() {

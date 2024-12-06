@@ -5,17 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: any, filterNote: string) {
-    if(filterNote === ''){
-      return value;
+  transform(value: any[], filterNote: string): any[] {
+    if (!filterNote) {
+      return value; 
     }
-    const notes = [];
-    for(const note of value){
-      if(note.title.includes(filterNote)){
-        notes.push(note)
-      }
-    }
-    return notes;
+    const lowerCaseFilter = filterNote.toLowerCase(); 
+    return value.filter(note => 
+      note.title.toLowerCase().includes(lowerCaseFilter)||note.description.toLowerCase().includes(lowerCaseFilter)
+    );
   }
-
 }
