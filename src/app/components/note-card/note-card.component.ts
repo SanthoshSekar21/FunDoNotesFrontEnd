@@ -33,8 +33,6 @@ export class NoteCardComponent {
       width: '640px',
       data: note,
     });
-
-    // Listen for events from UpdateNoteComponent
     this.dialogRef.componentInstance.iconOperation.subscribe((iconEvent: any) => {
       this.updateList.emit(iconEvent);
     });

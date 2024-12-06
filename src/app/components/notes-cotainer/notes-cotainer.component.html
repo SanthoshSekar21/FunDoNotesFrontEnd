@@ -1,20 +1,25 @@
 <div *ngIf="isLoading" class="loading-container">
   <div class="loading-spinner">
-    <!-- You can use a CSS spinner or a library like Angular Material Spinner -->
-    <mat-spinner></mat-spinner> <!-- If you are using Angular Material -->
+    <mat-spinner></mat-spinner> 
   </div>
   <p>Loading notes...</p>
 </div>
 
 <div *ngIf="!isLoading">
-  <!-- Your notes container will be shown once the data is loaded -->
   <app-add-note class="addnote" (updateList)="handleUpdateList($event)"></app-add-note>
+
   <div class="notes-container">
-    <div *ngFor="let note of notesList | filter: filterNote">
-      <app-note-card
-        [noteDetails]="note"
-        (updateList)="handleUpdateList($event)"
-      ></app-note-card>
+    <div *ngIf="notesList.length === 0" class="no-notes-wrapper">
+      <div class="empty-state">
+        <img src="../../../assets/emptyNote.svg" alt="No Notes" />
+        <p>No notes to display</p>
+      </div>
     </div>
+
+    <ng-container *ngIf="notesList.length > 0">
+      <div *ngFor="let note of notesList | filter: filterNote">
+        <app-note-card [noteDetails]="note" (updateList)="handleUpdateList($event)"></app-note-card>
+      </div>
+    </ng-container>
   </div>
 </div>

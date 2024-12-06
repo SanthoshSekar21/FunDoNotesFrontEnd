@@ -10,7 +10,7 @@ export class DataService {
   incomingData = this.messageSource.asObservable();
   outgoingData(message: any){
     console.log(message);
-    this.messageSource.next(message)
+    this.messageSource.next(message);
   }
 }
 
