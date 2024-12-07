@@ -6,8 +6,17 @@
 </div>
 <div *ngIf="!isLoading">
 <div class="archive-container">
+  <div *ngIf="archiveList.length === 0" class="no-notes-wrapper">
+    <div class="empty-state">
+      <img src="../../../assets/emptyNote.svg" alt="No Notes" />
+      <p>No notes to display</p>
+    </div>
+  </div>
+
+  <ng-container *ngIf="archiveList.length > 0">
     <div *ngFor="let note of archiveList|filter: filterNote" class="note-card">
       <app-note-card [noteDetails]="note"  (updateList)=" handleArchiveList($event)"></app-note-card>
     </div>
+  </ng-container>
   </div>
 </div>

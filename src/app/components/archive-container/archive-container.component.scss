@@ -17,5 +17,26 @@
     padding: 2%; 
   }
   
+  .no-notes-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    width: 100%; 
+  }
+  
+  .empty-state img {
+    width: 200px; 
+    transition: transform 0.3s ease;
+  }
+  
+  .empty-state img:hover {
+    transform: translateY(-10px); 
+  }
+  
+  .empty-state p {
+    font-size: 1.2rem;
+    color: #666;
+  }
   
   
