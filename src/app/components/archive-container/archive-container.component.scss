@@ -1,3 +1,15 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.loading-spinner {
+  margin-right: 20px;
+}
+
 .archive-container {
     display: flex;
     flex-wrap: wrap;

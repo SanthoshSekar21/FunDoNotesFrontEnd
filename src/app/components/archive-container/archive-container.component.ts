@@ -12,6 +12,8 @@ export class ArchiveContainerComponent implements OnInit {
   @Input() noteDetails: { _id: string; title: string; description: string } = { _id: '', title: '',description: ''};
   archiveList: any[] = []; 
   filterNote:any;
+  isLoading = true; 
+
   constructor(private httpService: HttpService,private data:DataService) {}
 
   ngOnInit() {
@@ -22,6 +24,7 @@ export class ArchiveContainerComponent implements OnInit {
     this.httpService.getAllNotesApiCall('/api/v1/notes', { headers }).subscribe({
       next: (res: any) => {
         this.archiveList = res.data.filter((note: any) => note.isArchive === true && note.isTrash===false);
+        this.isLoading=false;
       },
       error: (err) => {
         console.error('Error fetching archived notes:', err);

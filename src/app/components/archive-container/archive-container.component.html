@@ -1,5 +1,13 @@
+<div *ngIf="isLoading" class="loading-container">
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner> 
+  </div>
+  <p>Loading notes...</p>
+</div>
+<div *ngIf="!isLoading">
 <div class="archive-container">
     <div *ngFor="let note of archiveList|filter: filterNote" class="note-card">
       <app-note-card [noteDetails]="note"  (updateList)=" handleArchiveList($event)"></app-note-card>
     </div>
   </div>
+</div>
