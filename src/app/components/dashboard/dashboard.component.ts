@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,31 +13,33 @@ import { EditLabelComponent } from '../edit-label/edit-label.component';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  labels: string[] = [];
-  isExpanded = false; 
+  labels: { name: string, isEditing: boolean }[] = [];
+  isExpanded = false;
   selectedItem: string = 'notes';
   isDrawerOpen = false;
+
   constructor(
-    public iconRegistry:MatIconRegistry,
-    public sanitizer:DomSanitizer,
+    public iconRegistry: MatIconRegistry,
+    public sanitizer: DomSanitizer,
     private router: Router,
-    private data: DataService,private dialog: MatDialog
+    private data: DataService,
+    private dialog: MatDialog,  private cdr: ChangeDetectorRef
   ) {
-    iconRegistry.addSvgIconLiteral('remainder-icon',sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
+    iconRegistry.addSvgIconLiteral('remainder-icon', sanitizer.bypassSecurityTrustHtml(REMINDER_ICON));
     iconRegistry.addSvgIconLiteral('archive-icon', sanitizer.bypassSecurityTrustHtml(ARCHIVE_ICON));
     iconRegistry.addSvgIconLiteral('trash-icon', sanitizer.bypassSecurityTrustHtml(TRASH_ICON));
     iconRegistry.addSvgIconLiteral('notes-icon', sanitizer.bypassSecurityTrustHtml(NOTE_ICON));
-    iconRegistry.addSvgIconLiteral('setting-icon',sanitizer.bypassSecurityTrustHtml(SETTING_ICON));
-    iconRegistry.addSvgIconLiteral('list-view-icon',sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
-    iconRegistry.addSvgIconLiteral('edit-icon',sanitizer.bypassSecurityTrustHtml(EDIT_ICON));
+    iconRegistry.addSvgIconLiteral('setting-icon', sanitizer.bypassSecurityTrustHtml(SETTING_ICON));
+    iconRegistry.addSvgIconLiteral('list-view-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
+    iconRegistry.addSvgIconLiteral('edit-icon', sanitizer.bypassSecurityTrustHtml(EDIT_ICON));
   }
-   
+
   ngOnInit(): void {
-    const initialRoute = this.router.url.split('/').pop(); 
+    const initialRoute = this.router.url.split('/').pop();
     this.selectedItem = initialRoute || 'notes';
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        const route = this.router.url.split('/').pop(); 
+        const route = this.router.url.split('/').pop();
         this.selectedItem = route || 'notes';
       }
     });
@@ -51,17 +53,18 @@ export class DashboardComponent {
     this.isDrawerOpen = isHover;
   }
 
-
   stopPropagation(event: Event) {
     event.stopPropagation();
   }
-  navigateTo(route:string){
-    this.router.navigate(['/dashboard', route])
+
+  navigateTo(route: string) {
+    this.router.navigate(['/dashboard', route]);
   }
 
   search(event: any) {
     this.data.outgoingData(event.target.value);
   }
+
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['']);
@@ -69,10 +72,25 @@ export class DashboardComponent {
   openEditLabelDialog() {
     const dialogRef = this.dialog.open(EditLabelComponent, {
       width: '400px',
-      data: { labels: this.labels }
+      data: {
+        labels: this.labels.map(label => label.name),
+        onLabelCreated: (newLabel: { name: string }) => {
+          const newLabelObj = { name: newLabel.name, isEditing: false }; 
+          this.labels.push(newLabelObj);
+          this.cdr.detectChanges();
+          console.log('Label added:', newLabelObj);
+        },
+        onLabelUpdated: (updatedLabels: string[]) => {
+          this.labels = updatedLabels.map(label => ({ name: label, isEditing: false }));
+          this.cdr.detectChanges();
+          console.log('Labels updated:', this.labels);
+        }
+      }
     });
+  
+    dialogRef.afterClosed().subscribe(() => {
+      console.log('Dialog closed');
+    });
+  }
+  
 }
-
-}
-
-

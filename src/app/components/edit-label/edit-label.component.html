@@ -2,26 +2,31 @@
 <div mat-dialog-content>
   <div class="new-label">
     <button mat-icon-button (click)="cancelCreation()" aria-label="Cancel">
-      <mat-icon>close</mat-icon> 
+      <mat-icon>close</mat-icon>
     </button>
 
     <mat-form-field class="new-label-input">
       <input matInput [(ngModel)]="newLabel" placeholder="Create new label" />
     </mat-form-field>
+    
     <button mat-icon-button (click)="createLabel()" [disabled]="!newLabel.trim()" aria-label="Save">
-      <mat-icon>check</mat-icon> 
+      <mat-icon>check</mat-icon>
     </button>
   </div>
   <div *ngFor="let label of labels; let i = index" class="label-item">
     <div class="edit-label">
       <button mat-icon-button (click)="deleteLabel(i)" aria-label="Delete Label">
-        <mat-icon>delete</mat-icon> 
+        <mat-icon>delete</mat-icon>
       </button>
       <mat-form-field class="existing-label-input">
-        <input matInput [(ngModel)]="labels[i]" placeholder="Label name"/>
+        <input 
+          matInput 
+          [(ngModel)]="label.name" 
+          [readonly]="!label.isEditing" 
+          placeholder="Label name" />
       </mat-form-field>
-      <button mat-icon-button (click)="renameLabel(i)" aria-label="Edit Label">
-        <mat-icon>edit</mat-icon> 
+      <button mat-icon-button (click)="toggleEdit(i)" aria-label="Edit/Save Label">
+        <mat-icon>{{ label.isEditing ? 'check' : 'edit' }}</mat-icon>
       </button>
     </div>
   </div>

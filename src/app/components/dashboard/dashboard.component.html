@@ -51,7 +51,7 @@
       </div>
       <div *ngFor="let label of labels" class="drawer-item" role="button">
         <mat-icon>label_outline</mat-icon>
-        <span class="drawer-label">{{ label }}</span>
+        <span class="drawer-label">{{  label.name }}</span>
       </div>
       
       <div class="drawer-item" (click)="navigateTo('archive')"[ngClass]="{ 'active': selectedItem === 'archive' }" role="button" aria-label="Archive">
