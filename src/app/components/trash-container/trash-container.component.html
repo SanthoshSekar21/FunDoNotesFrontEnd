@@ -1,3 +1,10 @@
+<div *ngIf="isLoading" class="loading-container">
+  <div class="loading-spinner">
+    <mat-spinner></mat-spinner> 
+  </div>
+  <p>Loading notes...</p>
+</div>
+<div *ngIf="!isLoading">
 <div class="trash-container">
     <div *ngFor="let note of trashList | filter:filterNote" class="note-card">
       <app-note-card [noteDetails]="note"  (updateList)=" handleTrashList($event)"></app-note-card>

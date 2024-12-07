@@ -16,6 +16,7 @@ export class TrashContainerComponent {
   };
   trashList: any[] = []; 
   filterNote:any
+  isLoading = true;  
   
   constructor(private httpService: HttpService,private data:DataService) {}
 
@@ -31,6 +32,7 @@ export class TrashContainerComponent {
     this.httpService.getAllNotesApiCall('/api/v1/notes/',{headers}).subscribe({
       next: (res: any) => {
         this.trashList = res.data.filter((note: any) => note.isTrash === true);
+        this.isLoading=false;
       },
       error: (err) => {
         console.error('Error fetching trash notes:', err);
