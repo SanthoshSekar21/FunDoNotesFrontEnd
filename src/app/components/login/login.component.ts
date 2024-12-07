@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../../service/http-service/http.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   
       registerForm!: FormGroup;
       submitted = false;
-      
+      subscription: Subscription | null = null; 
       constructor(private formBuilder: FormBuilder,public httpService:HttpService,private router:Router ) { }
   
       ngOnInit() {
@@ -40,5 +41,12 @@ export class LoginComponent {
           });
           
         } 
+      }
+      ngOnDestroy() {
+ 
+        if (this.subscription) {
+          this.subscription.unsubscribe();
+          this.subscription = null; 
+        }
       }
     }      

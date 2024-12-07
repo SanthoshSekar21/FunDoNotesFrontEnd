@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
 import { DataService } from 'src/app/service/dataservices/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notes-cotainer',
@@ -23,6 +24,7 @@ export class NotesCotainerComponent {
   selectedColor!: string;
   filterNote: any;
   isLoading = true;  
+  subscription: Subscription | null = null; 
 
   constructor(private httpService: HttpService, private data: DataService) {}
 
@@ -83,5 +85,12 @@ export class NotesCotainerComponent {
         );
       }
      }
+  }
+  ngOnDestroy() {
+ 
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null; 
+    }
   }
 }

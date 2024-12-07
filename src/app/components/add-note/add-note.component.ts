@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { BRUSH_ICON, IMG_ICON, TICK_ICON } from 'src/assets/svg-icons';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-add-note',
@@ -18,7 +19,8 @@ export class AddNoteComponent {
   title = '';
   description = '';
   selectedColor: any;
-
+  subscription: Subscription | null = null;
+   
   constructor(
      private httpService: HttpService, public iconRegistry:MatIconRegistry,
     private sanitizer:DomSanitizer,
@@ -57,5 +59,12 @@ export class AddNoteComponent {
     const { action, data } = event;  
     this.updateList.emit({ data, action }); 
     this.selectedColor = data.color;
+  }
+  ngOnDestroy() {
+ 
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null; 
+    }
   }
 }

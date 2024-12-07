@@ -1,18 +1,20 @@
-import { Component, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, Inject, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-update-note',
   templateUrl: './update-note.component.html',
   styleUrls: ['./update-note.component.scss'],
 })
-export class UpdateNoteComponent {
+export class UpdateNoteComponent  {
   @Output() updateList = new EventEmitter<{ data: { title: string; description: string; _id: string }; action: string; color: string }>();
   @Output() iconOperation = new EventEmitter<{ data: { _id: string }; action: string }>();
 
   selectedColor: string = '';
+  subscription!:Subscription
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public noteDetails: { _id: string; title: string; description: string; color: any },
@@ -62,5 +64,8 @@ export class UpdateNoteComponent {
       default:
         console.warn(`Unhandled action: ${action}`);
     }
+  }
+  ngOnDestroy(){
+ this.subscription.unsubscribe();
   }
 }

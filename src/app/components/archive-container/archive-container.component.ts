@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
 import { DataService } from 'src/app/service/dataservices/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-archive-container',
@@ -13,6 +14,7 @@ export class ArchiveContainerComponent implements OnInit {
   archiveList: any[] = []; 
   filterNote:any;
   isLoading = true; 
+  subscription: Subscription | null = null; 
 
   constructor(private httpService: HttpService,private data:DataService) {}
 
@@ -49,6 +51,13 @@ export class ArchiveContainerComponent implements OnInit {
       }
       return note; 
     });
+  }
+}
+ngOnDestroy() {
+ 
+  if (this.subscription) {
+    this.subscription.unsubscribe();
+    this.subscription = null; 
   }
 }
 }

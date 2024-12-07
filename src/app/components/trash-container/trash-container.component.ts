@@ -1,5 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/service/dataservices/data.service';
 import { HttpService } from 'src/app/service/http-service/http.service';
 
@@ -9,6 +10,7 @@ import { HttpService } from 'src/app/service/http-service/http.service';
   styleUrls: ['./trash-container.component.scss']
 })
 export class TrashContainerComponent {
+  subscription: Subscription | null = null; 
   @Input() noteDetails: { _id: string; title: string; description: string } = {
     _id: '',
     title: '',
@@ -50,5 +52,12 @@ export class TrashContainerComponent {
    else if(action==='delete'&& data){
     this.trashList=this.trashList.filter(note=>note._id!==data._id );
    }
+}
+ngOnDestroy() {
+ 
+  if (this.subscription) {
+    this.subscription.unsubscribe();
+    this.subscription = null; 
+  }
 }
 }

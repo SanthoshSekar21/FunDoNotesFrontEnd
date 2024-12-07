@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_ICON, MORE_ICON, DELETE_FOREVER_ICON, RESTORE_ICON, UNARCHIVE_ICON, TRASH_ICON, UNDO_ICON, REDO_ICON } from 'src/assets/svg-icons';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-icon',
@@ -11,6 +12,7 @@ import { REMINDER_ICON, COLLABRATOR_ICON, COLOR_PALATTE_ICON, IMG_ICON, ARCHIVE_
   styleUrls: ['./icon.component.scss']
 })
 export class IconComponent {
+  subscription: Subscription | null = null; 
   @Input() noteDetails: { _id?: string; title?: string; description?: string;color?:{code:string,name:string},isTrash?:boolean,isArchive?:boolean }={};
   @Output() iconOperation: EventEmitter<any> = new EventEmitter();
  colorArray: Array<any> = [
@@ -115,6 +117,12 @@ export class IconComponent {
       }
     });
   }
-
+  ngOnDestroy() {
+ 
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null; 
+    }
+  }
   
 }

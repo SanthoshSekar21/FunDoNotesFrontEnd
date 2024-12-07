@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpService } from '../../service/http-service/http.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,8 @@ export class RegisterComponent {
     registerForm!: FormGroup;
     submitted = false;
     showPass = 'password';
-    backendError: string | null = null; // Variable to hold the backend error message
+    backendError: string | null = null; 
+    subscription: Subscription | null = null; 
 
     constructor(private formBuilder: FormBuilder, public httpService: HttpService, private router: Router) { }
 
@@ -26,12 +28,12 @@ export class RegisterComponent {
         });
     }
 
-    // convenience getter for easy access to form fields
+  
     get signUpFormControls() { return this.registerForm.controls; }
 
     handleSignup() {
         this.submitted = true;
-        this.backendError = null; // Clear any previous error
+        this.backendError = null; 
 
         if (this.registerForm.valid) {
             const { Firstname, Lastname, Email, Password } = this.registerForm.value;
@@ -53,4 +55,11 @@ export class RegisterComponent {
             });
         }
     }
+    ngOnDestroy() {
+ 
+        if (this.subscription) {
+          this.subscription.unsubscribe();
+          this.subscription = null; 
+        }
+      }
 }
