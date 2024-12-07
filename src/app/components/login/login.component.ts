@@ -15,7 +15,7 @@ export class LoginComponent {
       submitted = false;
       backendError: string | null = null; 
       subscription: Subscription | null = null; 
-      constructor(private formBuilder: FormBuilder,public httpService:HttpService,private router:Router ) { }
+      constructor(private formBuilder: FormBuilder,public httpService:HttpService, public router:Router ) { }
   
       ngOnInit() {
           this.registerForm = this.formBuilder.group({
