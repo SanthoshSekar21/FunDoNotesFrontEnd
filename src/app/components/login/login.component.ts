@@ -13,6 +13,7 @@ export class LoginComponent {
   
       registerForm!: FormGroup;
       submitted = false;
+      backendError: string | null = null; 
       subscription: Subscription | null = null; 
       constructor(private formBuilder: FormBuilder,public httpService:HttpService,private router:Router ) { }
   
@@ -27,6 +28,7 @@ export class LoginComponent {
       get regFormControls() { return this.registerForm.controls; }
       handleLogin() {
         this.submitted = true; 
+        this.backendError = null; 
         if (this.registerForm.valid) {
           const { Email, Password } = this.registerForm.value;
           this.httpService.loginApiCall('/api/v1/users', { Email, Password }).subscribe({
@@ -35,9 +37,14 @@ export class LoginComponent {
               localStorage.setItem("token",res.token);
              this.router.navigate(['/dashboard/notes'])
             },
-            error: (err) => {
+            error: (err:any) => {
+              if (err.status === 400 && err.error && err.error.message) {
+                this.backendError = err.error?.message;
+              } else {
+                  this.backendError = 'An unexpected error occurred. Please Enter the Valid credentials.';
+              }
               console.log(err);
-            }
+          }
           });
           
         } 
