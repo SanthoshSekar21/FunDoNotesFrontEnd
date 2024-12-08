@@ -14,8 +14,6 @@ describe('DashboardComponent', () => {
   let fixture: ComponentFixture<DashboardComponent>;
   let dialogMock: jasmine.SpyObj<MatDialog>;
   let dataServiceMock: jasmine.SpyObj<DataService>;
-
-  // Mocking MatDialogRef with all the required properties
   const matDialogRefMock = jasmine.createSpyObj('MatDialogRef', [
     'afterClosed', 
     '_ref', 
@@ -23,17 +21,11 @@ describe('DashboardComponent', () => {
     'componentInstance', 
     'componentRef'
   ]);
-
-  // Set afterClosed to return the desired observable value
   matDialogRefMock.afterClosed.and.returnValue(of({ name: 'New Label' }));
 
   beforeEach(async () => {
-    // Create a spy for MatDialog to mock the open method
     dialogMock = jasmine.createSpyObj('MatDialog', ['open']);
-    // Set the open method to return the mock MatDialogRef
     dialogMock.open.and.returnValue(matDialogRefMock);
-
-    // Mock DataService
     dataServiceMock = jasmine.createSpyObj('DataService', ['outgoingData']);
 
     await TestBed.configureTestingModule({
@@ -81,7 +73,5 @@ describe('DashboardComponent', () => {
     component.search({ target: { value: searchValue } });
     expect(dataServiceMock.outgoingData).toHaveBeenCalledWith(searchValue);
   });
-
- 
   
 });

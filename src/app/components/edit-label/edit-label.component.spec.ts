@@ -29,7 +29,7 @@ describe('EditLabelComponent', () => {
         MatInputModule,],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: matDialogData },
-        { provide: MatDialogRef, useValue: {} } // Mock MatDialogRef
+        { provide: MatDialogRef, useValue: {} } 
       ]
     }).compileComponents();
 
@@ -52,7 +52,7 @@ describe('EditLabelComponent', () => {
     component.createLabel();
 
     expect(onLabelCreated).toHaveBeenCalledWith({ name: 'New Label', isEditing: false });
-    expect(component.labels.length).toBe(3); // Labels array should now include the new label
+    expect(component.labels.length).toBe(3); 
     expect(component.newLabel).toBe('');
   });
 
