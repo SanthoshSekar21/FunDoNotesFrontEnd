@@ -3,7 +3,7 @@ import { HttpService } from '../../service/http-service/http.service';
 import { HttpHeaders } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
-import { BRUSH_ICON, IMG_ICON, TICK_ICON } from 'src/assets/svg-icons';
+import { BRUSH_ICON, IMG_ICON, REDO_ICON, TICK_ICON, UNDO_ICON } from 'src/assets/svg-icons';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -28,6 +28,8 @@ export class AddNoteComponent {
     iconRegistry.addSvgIconLiteral('bursh-icon', sanitizer.bypassSecurityTrustHtml(BRUSH_ICON));
     iconRegistry.addSvgIconLiteral('tick-icon',sanitizer.bypassSecurityTrustHtml(TICK_ICON));
     iconRegistry.addSvgIconLiteral('img-icon',sanitizer.bypassSecurityTrustHtml(IMG_ICON));
+    iconRegistry.addSvgIconLiteral('redo-icon',sanitizer.bypassSecurityTrustHtml(REDO_ICON));
+    iconRegistry.addSvgIconLiteral('undo-icon',sanitizer.bypassSecurityTrustHtml(UNDO_ICON));
   }
 
   addNoteToggle(action: string) {

@@ -15,7 +15,7 @@ export class HttpService {
     return this.http.post('http://localhost:3000'+endpoint,data)
   }
  
-  createNoteApiCall(endpoint:string,data:any,header:any){
+  createNoteApiCall(endpoint:string,data:any,header:any):Observable<any>{
     return this.http.post('http://localhost:3000'+endpoint,data,header)
   }
   getAllNotesApiCall(endpoint: string, header: any): Observable<any> {
