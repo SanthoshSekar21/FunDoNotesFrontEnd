@@ -8,7 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./note-card.component.scss'],
 })
 export class NoteCardComponent {
-  private dialogRef: MatDialogRef<UpdateNoteComponent> | null = null;
+  public dialogRef: MatDialogRef<UpdateNoteComponent> | null = null;
 
   @Input() noteDetails: { _id: string; title: string; description: string; color: any; isTrash: boolean; isArchive: boolean } = {
     _id: '',
@@ -43,4 +43,5 @@ export class NoteCardComponent {
       }
     });
   }
+  
 }
