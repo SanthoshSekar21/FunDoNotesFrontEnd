@@ -21,7 +21,7 @@ describe('NoteCardComponent', () => {
       declarations: [NoteCardComponent, MockUpdateNoteComponent],
       imports: [MatDialogModule,HttpClientModule],
       providers: [MatDialog],
-      schemas: [NO_ERRORS_SCHEMA], // Ignoring other components for simplicity
+      schemas: [NO_ERRORS_SCHEMA], 
     });
     
     fixture = TestBed.createComponent(NoteCardComponent);
@@ -40,7 +40,7 @@ describe('NoteCardComponent', () => {
     component.noteDetails = note;
     fixture.detectChanges();
     
-    spyOn(matDialog, 'open');  // Spying on dialog open method
+    spyOn(matDialog, 'open');  
 
     const noteCard = fixture.debugElement.query(By.css('.note-card'));
     noteCard.triggerEventHandler('click', null);
