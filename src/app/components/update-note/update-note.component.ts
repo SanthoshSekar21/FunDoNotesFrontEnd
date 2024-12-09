@@ -65,7 +65,5 @@ export class UpdateNoteComponent  {
         console.warn(`Unhandled action: ${action}`);
     }
   }
-  ngOnDestroy(){
- this.subscription.unsubscribe();
-  }
+  
 }
