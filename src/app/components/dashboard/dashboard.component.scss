@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +15,6 @@ body {
   height: 100vh;
   position: relative;
 }
-
 header {
   display: flex;
   justify-content: space-between;
@@ -26,79 +24,55 @@ header {
   color: rgb(26, 22, 22);
   position: sticky;
   top: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-
 .menu-button {
   color: black;
   margin-right: 15px;
 }
-::ng-deep .mat-mdc-menu-panel .mat-mdc-menu-content {
-  padding: 0;
+
+.app-icon {
+  height: 2.7em;
+  width: 1.85em;
 }
 
-.app-icon{
-  height:2.7em;
-  width: 1.85em;
-  
-}
 .app-name {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-right: 20px; 
-  margin-left: 20px;
+  margin: 0 20px;
 }
 .search-container {
   display: flex;
   align-items: center;
-  flex-grow: 1; 
-  margin: 0 20px; 
+  flex-grow: 1;
+  margin: 0 20px;
 }
 
 .search-wrapper {
-  position: relative; 
-  width: 80%;
-  max-width: 700px; 
+  position: relative;
+  width: 100%;
+  max-width: 700px;
 }
 
 .search-box {
   width: 100%;
-  padding: 12px 12px 12px 40px; 
+  padding: 12px 12px 12px 50px;
   border-radius: 6px;
   background-color: #ffffff;
   border: 1px solid #afaaaa;
-  font-size: 16px;
+  font-size: 1rem;
   outline: none;
+  transition: border-color 0.3s;
 }
 
 .search-box:focus {
   border-color: #898b89;
 }
 
-.search-icon {
-  position: absolute; 
-  justify-content: center;
-  display: flex;
-  top: 50%;
-  left: 0; 
-  transform: translateY(-50%); 
-  background: none; 
-  border: none;
-  cursor: pointer; 
-  color:black; 
-}
-
-.search-icon mat-icon {
-  width: 20px; 
-  height: 20px; 
-}
-
+.search-icon,
 .clear-icon {
   position: absolute;
-  display: flex;
-  justify-content: center;
   top: 50%;
-  right: 10px; 
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -106,88 +80,121 @@ header {
   color: black;
 }
 
+.search-icon {
+  left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.clear-icon {
+  right: 10px;
+}
+
+.search-icon mat-icon,
 .clear-icon mat-icon {
   width: 20px;
   height: 20px;
 }
+
 .header-icons {
   display: flex;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .header-icons button {
-  color: black; 
+  color: black;
+  transition: color 0.3s;
+}
+
+.header-icons button:hover {
+  color: #555;
 }
 
 .header-icons mat-icon {
   width: 24px;
   height: 24px;
-  fill: currentColor; 
-  transition: color 0.3s; 
+  fill: currentColor;
 }
+::ng-deep .mat-mdc-menu-panel .mat-mdc-menu-content {
+  padding: 0;
+}
+
 .main-content {
-  display: flex; 
-  flex: 1; 
+  display: flex;
+  flex: 1;
   width: 100%;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .side-drawer {
-  width: 60px; 
+  width: 60px;
   height: 100%;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-top: 20px;
-  transition: width 0.3s ease;
+  transition: width 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  justify-content: flex-start;
+}
+.side-drawer.drawer-expanded {
+  width: 250px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+.side-drawer.drawer-collapsed {
+  width: 60px;
 }
 
-.side-drawer.drawer-expanded {
-  width: 250px; 
-  display: flex;
-  align-items: flex-start;
-}
-.drawer-item {
+.expanded-item,
+.collapsed-item {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  margin-bottom: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  transition: background-color 0.3s, border-radius 0.3s;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.expanded-item {
+  width: 250px;
   border-radius: 0 30px 30px 0;
-  justify-content: flex-start;
-
-&:hover {
-  background-color: #f0f0f0;
+  padding-left: 16px;
+}
+.collapsed-item {
+  width: 50px;
+    border-radius: 50%;
+    margin-left: 6px;
+    padding: 10px;
+    padding-left: 12px;
 }
 
-&.active {
-  background-color:#fff8b8;
-  font-weight: bold;
+.expanded-item:hover,
+.collapsed-item:hover {
+  background-color: #f5f5f5;
 }
+.expanded-item.active,
+.collapsed-item.active {
+  background-color: #fff8b8;
 }
 
 .drawer-label {
-  font-size: 16px;
-  margin-left: 10px;
+  font-size: 1rem;
+  margin-left: 15px;
   padding-right: 103px;
-  opacity: 0;
+  opacity: 0; /* Hide by default */
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.drawer-expanded .drawer-label {
+.side-drawer.drawer-expanded .drawer-label {
   opacity: 1;
   visibility: visible;
 }
 
 .content-container {
-  flex: 1; 
+  flex: 1;
   padding: 20px;
   background-color: #f5f5f5;
   overflow-y: auto;
-} 
+}
