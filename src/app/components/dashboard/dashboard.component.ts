@@ -17,6 +17,7 @@ export class DashboardComponent {
   isExpanded = false;
   selectedItem: string = 'notes';
   isDrawerOpen = false;
+  searchText: string = ''; 
 
   constructor(
     public iconRegistry: MatIconRegistry,
@@ -65,7 +66,8 @@ export class DashboardComponent {
   }
 
   search(event: any) {
-    this.data.outgoingData(event.target.value);
+    this.searchText=event.target.value
+    this.data.outgoingData(this.searchText);
   }
 
   logout(): void {
@@ -94,6 +96,10 @@ export class DashboardComponent {
     dialogRef.afterClosed().subscribe(() => {
       console.log('Dialog closed');
     });
+  }
+  clearSearch(): void {
+    this.searchText = ''; 
+    this.data.outgoingData(''); // Op
   }
   
 }

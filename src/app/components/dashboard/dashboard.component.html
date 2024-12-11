@@ -7,9 +7,12 @@
     <span class="app-name">FunDoNotes</span>
     <div class="search-container">
       <div class="search-wrapper">
-        <input type="text" id="search" placeholder="Search notes..." class="search-box" (keyup)="search($event)" />
         <button mat-icon-button aria-label="Search" class="search-icon">
           <mat-icon>search</mat-icon>
+        </button>
+        <input type="text" id="search" placeholder="Search notes..." class="search-box" [(ngModel)]="searchText" (keyup)="search($event)"/>
+        <button *ngIf="searchText" mat-icon-button aria-label="Clear Search" class="clear-icon"(click)="clearSearch()">
+          <mat-icon>close</mat-icon>
         </button>
       </div>
     </div>

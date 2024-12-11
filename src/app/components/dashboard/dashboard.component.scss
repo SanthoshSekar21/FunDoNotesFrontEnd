@@ -92,6 +92,24 @@ header {
   width: 20px; 
   height: 20px; 
 }
+
+.clear-icon {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 50%;
+  right: 10px; 
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: black;
+}
+
+.clear-icon mat-icon {
+  width: 20px;
+  height: 20px;
+}
 .header-icons {
   display: flex;
   gap: 10px; 
