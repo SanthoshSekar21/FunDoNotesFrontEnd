@@ -32,6 +32,9 @@ export class DashboardComponent {
     iconRegistry.addSvgIconLiteral('setting-icon', sanitizer.bypassSecurityTrustHtml(SETTING_ICON));
     iconRegistry.addSvgIconLiteral('list-view-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
     iconRegistry.addSvgIconLiteral('edit-icon', sanitizer.bypassSecurityTrustHtml(EDIT_ICON));
+    iconRegistry.addSvgIconLiteral('listview-icon', sanitizer.bypassSecurityTrustHtml(LIST_VIEW_ICON));
+    iconRegistry.addSvgIconLiteral('refresh-icon', sanitizer.bypassSecurityTrustHtml(REFRESH_ICON));
+
   }
 
   ngOnInit(): void {
