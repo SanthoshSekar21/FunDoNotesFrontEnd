@@ -16,7 +16,7 @@ export class ArchiveContainerComponent implements OnInit {
   isLoading = true; 
   subscription: Subscription | null = null; 
 
-  constructor(private httpService: HttpService,private data:DataService) {}
+  constructor(private httpService: HttpService,public data:DataService) {}
 
   ngOnInit() {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${localStorage.getItem('token')}`);

@@ -43,15 +43,11 @@ describe('UpdateNoteComponent', () => {
     spyOn(component.updateList, 'emit');
 
     component.onClose();
-
-    // Check if the API call is made
     expect(httpServiceMock.updateNoteApiCall).toHaveBeenCalledWith(
       '/api/v1/notes/1', 
       { title: 'Test Note', description: 'Test Description' }, 
       { headers: jasmine.any(HttpHeaders) }
     );
-
-    // Check if the correct data is emitted
     expect(component.updateList.emit).toHaveBeenCalledWith({
       data: mockResponse.data,
       action: 'update',
@@ -66,7 +62,6 @@ describe('UpdateNoteComponent', () => {
 
     component.onClose();
 
-    // Check if the error is logged correctly
     expect(console.error).toHaveBeenCalledWith('Error updating note:', 'Error occurred');
   });
 

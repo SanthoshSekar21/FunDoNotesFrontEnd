@@ -43,7 +43,7 @@ describe('ArchiveContainerComponent', () => {
     fixture.detectChanges();
 
     const noNotesMessage = fixture.debugElement.query(By.css('.no-notes-wrapper'));
-    expect(noNotesMessage).toBeTruthy(); // "No notes to display" message should appear
+    expect(noNotesMessage).toBeTruthy(); 
   }));
 
   it('should update archive list when a note is archived', fakeAsync(() => {
@@ -53,7 +53,7 @@ describe('ArchiveContainerComponent', () => {
     component.handleArchiveList({ action: 'archive', data: mockNote });
     fixture.detectChanges();
 
-    expect(component.archiveList.length).toBe(0); // Note should be removed from the archive list
+    expect(component.archiveList.length).toBe(0); 
   }));
 
   it('should update archive list when a note is trashed', fakeAsync(() => {
@@ -63,7 +63,7 @@ describe('ArchiveContainerComponent', () => {
     component.handleArchiveList({ action: 'trash', data: '1' });
     fixture.detectChanges();
 
-    expect(component.archiveList.length).toBe(0); // Note should be removed from the archive list
+    expect(component.archiveList.length).toBe(0); 
   }));
 
   it('should update note color when color-change action is triggered', fakeAsync(() => {
@@ -74,7 +74,7 @@ describe('ArchiveContainerComponent', () => {
     component.handleArchiveList({ action: 'color-change', data: { noteId: '1', color: newColor } });
     fixture.detectChanges();
 
-    expect(component.archiveList[0].color).toBe(newColor); // Note color should be updated
+    expect(component.archiveList[0].color).toBe(newColor); 
   }));
 
   it('should subscribe to incomingData from DataService', fakeAsync(() => {
@@ -83,7 +83,7 @@ describe('ArchiveContainerComponent', () => {
     tick();
     fixture.detectChanges();
 
-    expect(incomingDataSpy).toHaveBeenCalled(); // Ensure the subscription is triggered
+    expect(incomingDataSpy).toHaveBeenCalled(); 
   }));
 
  

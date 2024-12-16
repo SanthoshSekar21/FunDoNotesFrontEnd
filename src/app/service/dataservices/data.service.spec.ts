@@ -15,17 +15,17 @@ describe('DataService', () => {
 
   it('should have an initial value for incomingData as an empty string', (done: DoneFn) => {
     service.incomingData.subscribe((value) => {
-      expect(value).toBe(''); // The default value of BehaviorSubject
+      expect(value).toBe(''); 
       done();
     });
   });
 
   it('should update incomingData when outgoingData is called', (done: DoneFn) => {
     const testMessage = 'Test Message';
-    service.outgoingData(testMessage); // Updating the BehaviorSubject value
+    service.outgoingData(testMessage); 
 
     service.incomingData.subscribe((value) => {
-      expect(value).toBe(testMessage); // Expect updated value
+      expect(value).toBe(testMessage); 
       done();
     });
   });

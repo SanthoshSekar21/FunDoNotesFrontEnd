@@ -17,7 +17,7 @@ describe('HttpService', () => {
   });
 
   afterEach(() => {
-    httpMock.verify(); // Verify that no unmatched requests are pending
+    httpMock.verify(); 
   });
 
   it('should be created', () => {
